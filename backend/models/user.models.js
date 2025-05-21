@@ -1,8 +1,7 @@
-import { Schema } from "mongoose";
-
+import mongoose from "mongoose";
 
 // creating Schema for user 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     profilepic : {
         type: String,
         default: "",

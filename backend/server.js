@@ -26,4 +26,4 @@ app.listen(PORT, () => {
 );
 
 // initialize routes apis
-app.use('/api/user', UserAuth);
+app.use('/api/v1/user', UserAuth);
