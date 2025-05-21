@@ -56,7 +56,17 @@ export const getAllBooks = async (req, res) => {
         const limit = page.query.limit || 5;
         const skip = (page - 1) * limit;
 
-        res.status(200).json(books);
+        const totalBooks = await Book.countDocuments();
+        const totalPages = Math.ceil(totalBooks / limit);
+
+        res.status(200).json({
+            message: "Books fetched successfully",
+            books,
+            currentPage: page,
+            limit: limit,
+            totalBooks: totalBooks,
+            totalPages: totalPages
+        });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
