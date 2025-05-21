@@ -31,11 +31,10 @@ const styles = StyleSheet.create({
     shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 8,
     elevation: 4,
     borderWidth: 2,
     borderColor: COLORS.border,
-    marginTop: -24,
+    marginTop: 10,
   },
   header: {
     alignItems: "center",
@@ -54,6 +53,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     marginBottom: 16,
+
   },
   inputGroup: {
     marginBottom: 20,
