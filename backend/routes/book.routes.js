@@ -1,5 +1,5 @@
 import express from 'express'
-import {createBook, getAllBooks, getBookById } from '../controllers/book.controllers.js'
+import {createBook, getAllBooks, getBookById, deleteBook } from '../controllers/book.controllers.js'
 import { protect } from '../middleware/protectrouter.js'
 
 const router = express.Router()
@@ -8,3 +8,4 @@ const router = express.Router()
 router.post('/', protect, createBook);
 router.get('/', protect, getAllBooks);
 router.get('/:id', protect, getBookById);
+router.delete('/:id', protect, deleteBook);
