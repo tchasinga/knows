@@ -6,7 +6,7 @@ export default function Index () {
     <View style={styles.Container}>
       <Text>To edit this screen... now</Text>
       <Image
-        source={{ uri: 'https://storyset.com/illustration/bookshop/rafiki' }}
+        source={require('../assets/images/Bookshop-amico.png')}
         style={{ width: 150, height: 150 }}
       />
     </View>
