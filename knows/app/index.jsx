@@ -1,5 +1,6 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet} from 'react-native'
 import { Image } from 'expo-image'
+import { Link } from 'expo-router'
 
 export default function Index () {
   return (
@@ -11,6 +12,9 @@ export default function Index () {
         contentFit='contain'
         transition={1000}
       />
+      <Link href="/login">Login</Link>
+      <Link href="/signup">Sign Up</Link>
+      <Link href="/home">Home</Link>
     </View>
   )
 }
