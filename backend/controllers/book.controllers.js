@@ -111,7 +111,7 @@ export const deleteBook = async (req, res) => {
     }
 
     // Delete the book from the database
-    await book.remove()
+    await book.deleteOne()
     res.status(200).json({ message: 'Book deleted successfully' })
   } catch (error) {
     res.status(500).json({ message: error.message })
