@@ -40,3 +40,26 @@ export const createBook = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// get all books
+export const getAllBooks = async (req, res) => {
+    try {
+        const books = await Book.find().populate("user", "name");
+        res.status(200).json(books);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// get a book by id
+export const getBookById = async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id).populate("user", "name");
+        if (!book) {
+            return res.status(404).json({ message: "Book not found" });
+        }
+        res.status(200).json(book);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
