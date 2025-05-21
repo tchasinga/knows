@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import linksToMogoDbUrl from './db/linksToMogoDbUrl.js'
 import UserAuth from './routes/user.routes.js'
+import BookNews from './routes/book.routes.js'
 
 // innitialize express app
 const app = express()
@@ -25,3 +26,4 @@ app.listen(PORT, () => {
 
 // initialize routes apis
 app.use('/api/v1/user', UserAuth)
+app.use('/api/v1/book', BookNews)

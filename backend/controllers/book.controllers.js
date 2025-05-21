@@ -30,7 +30,7 @@ export const createBook = async (req, res) => {
             caption,
             image: result.secure_url,
             rating,
-            user: req.userId
+            user: req.user._id
         });
         await newBook.save();
         res.status(201).json({ message: "Book created successfully", book: newBook });
