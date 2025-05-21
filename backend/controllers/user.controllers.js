@@ -11,7 +11,7 @@ dotenv.config();
 // Function to singup a new user
 export const signup = async (req, res) => {
     try {
-        const { name, email, password, profilepic } = req.body;
+        const { name, email, password, profilepic, gender } = req.body;
 
         // Check if user already exists
         const existingUser = await User.findOne({ email });
@@ -21,13 +21,23 @@ export const signup = async (req, res) => {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
+        if (!hashedPassword) {
+            return res.status(500).json({ message: "Error hashing password" });
+        }
+
+       const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${name}`;
+       const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${name}`;
+
+
 
         // Create a new user
         const newUser = new User({
-            profilepic,
+            profilepic: profilepic ? profilepic : (gender === "male" ? boyProfilePic : girlProfilePic),
             name,
             email,
             password: hashedPassword,
+            gender,
+            token
         });
 
         // Save the user to the database
