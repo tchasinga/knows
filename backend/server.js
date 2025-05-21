@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from "dotenv";
-import linksToMogoDbUrl from './db/linksToMogoDbUrl';
+import linksToMogoDbUrl from './db/linksToMogoDbUrl.js';
 
 // innitialize express app
 const app = express();
