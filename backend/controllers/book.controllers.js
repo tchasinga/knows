@@ -100,6 +100,13 @@ export const deleteBook = async (req, res) => {
         .json({ message: 'Not authorized to delete this book' })
     }
 
+    // Delete the image from cloudinary
+    if (book.image && book.image.includes("cloudinary")) {
+      const publicId = book.image.split('/').pop().split('.')[0]
+      await cloudinary.uploader.destroy(`books/${publicId}`)
+    }
+
+    // Delete the book from the database
     await book.remove()
     res.status(200).json({ message: 'Book deleted successfully' })
   } catch (error) {
