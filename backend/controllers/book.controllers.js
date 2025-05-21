@@ -44,7 +44,11 @@ export const createBook = async (req, res) => {
 // get all books
 export const getAllBooks = async (req, res) => {
     try {
-        const books = await Book.find().populate("user", "name");
+        const books = await Book.find().sort.desc("createdAt").populate("user", "name");
+        if (!books) {
+            return res.status(404).json({ message: "No books found" });
+        }
+        
         res.status(200).json(books);
     } catch (error) {
         res.status(500).json({ message: error.message });
