@@ -5,11 +5,11 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from 'react-native'
-import React from 'react'
 import styles from '../../assets/styles/login.styles'
 import { useState } from 'react'
 import { Image } from 'expo-image'
 import Ionicons from '../../node_modules/@expo/vector-icons/Ionicons.d'
+import { Link } from 'expo-router';
 
 export default function Login () {
   const [email, setEmail] = useState('')
@@ -87,6 +87,15 @@ export default function Login () {
             <Text style={styles.buttonText}>Login</Text>
           )}
         </TouchableOpacity>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Don&apos;t have an account? </Text>
+          <Link href='/signup' asChild>
+           <TouchableOpacity>
+              <Text style={styles.link}>Sign Up</Text>
+           </TouchableOpacity>
+          </Link>
+        </View>
       </View>
     </View>
   )
