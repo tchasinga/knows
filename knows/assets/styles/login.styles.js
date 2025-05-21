@@ -1,6 +1,7 @@
 // styles/login.styles.js
 import { StyleSheet, Dimensions } from "react-native";
-import COLORS  from "../constant/colors";
+import COLORS from "../../constant/colors";
+
 
 const { width } = Dimensions.get("window");
 
