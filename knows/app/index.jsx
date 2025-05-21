@@ -14,7 +14,7 @@ export default function Index () {
       />
       <Link href="/login">Login</Link>
       <Link href="/signup">Sign Up</Link>
-      <Link href="/home">Home</Link>
+      <Link href="/">Home</Link>
     </View>
   )
 }
