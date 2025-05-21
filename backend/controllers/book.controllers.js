@@ -102,8 +102,12 @@ export const deleteBook = async (req, res) => {
 
     // Delete the image from cloudinary
     if (book.image && book.image.includes("cloudinary")) {
-      const publicId = book.image.split('/').pop().split('.')[0]
-      await cloudinary.uploader.destroy(`books/${publicId}`)
+        try {
+            const publicId = book.image.split('/').pop().split('.')[0]
+            await cloudinary.uploader.destroy(`books/${publicId}`)
+        } catch (error) {
+            console.error("Error deleting image from Cloudinary:", error)
+        }
     }
 
     // Delete the book from the database
