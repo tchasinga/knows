@@ -44,11 +44,18 @@ export const createBook = async (req, res) => {
 // get all books
 export const getAllBooks = async (req, res) => {
     try {
-        const books = await Book.find().sort.desc("createdAt").populate("user", "name");
+        const books = await Book.find().sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .populate("user", "name profilepic");
         if (!books) {
             return res.status(404).json({ message: "No books found" });
         }
-        
+
+        const page = page.query.page || 1;
+        const limit = page.query.limit || 5;
+        const skip = (page - 1) * limit;
+
         res.status(200).json(books);
     } catch (error) {
         res.status(500).json({ message: error.message });
