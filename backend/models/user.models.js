@@ -5,7 +5,7 @@ import { Schema } from "mongoose";
 const userSchema = new Schema({
     profilepic : {
         type: String,
-        default: "https://www.w3schools.com/howto/img_avatar.png",
+        default: "",
     },
     name: {
         type: String,
@@ -15,6 +15,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
+    },
+    gender: {
+        type: String,
+        enum: ["male", "female"],
     },
     password: {
         type: String,
