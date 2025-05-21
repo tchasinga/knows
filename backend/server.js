@@ -26,4 +26,4 @@ app.listen(PORT, () => {
 
 // initialize routes apis
 app.use('/api/v1/user', UserAuth)
-app.use('/api/v1/book', BookNews)
+app.use('/api/v2/book', BookNews)
