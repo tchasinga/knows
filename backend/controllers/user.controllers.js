@@ -116,3 +116,66 @@ export const signup = async (req, res) => {
         });
     }
 };
+
+// Adding a user singin function
+export const signin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Validate required fields
+        if (!email || !password) {
+            return res.status(400).json({ 
+                success: false,
+                message: "Email and password are required" 
+            });
+        }
+
+        // Check if user exists
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ 
+                success: false,
+                message: "Invalid email or password" 
+            });
+        }
+
+        // Compare passwords
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ 
+                success: false,
+                message: "Invalid email or password" 
+            });
+        }
+
+        // Generate a JWT token
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "1h",
+        });
+
+        // Omit sensitive information from response
+        const userResponse = {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            profilepic: user.profilepic,
+            gender: user.gender,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt
+        };
+
+        res.status(200).json({ 
+            success: true,
+            token, 
+            user: userResponse,
+            message: "User signed in successfully"
+        });
+    } catch (error) {
+        console.error("Error during signin:", error);
+        res.status(500).json({ 
+            success: false,
+            message: "Internal server error",
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    }
+};
