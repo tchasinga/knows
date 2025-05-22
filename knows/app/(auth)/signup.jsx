@@ -6,7 +6,8 @@ import {
   Platform,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from 'react-native'
 import styles from '../../assets/styles/signup.styles'
 import Ionicons from '@expo/vector-icons/Ionicons'
@@ -24,7 +25,26 @@ export default function Signup () {
   const router = useRouter()
 
 
-  const handleSignup = () => {}
+  const handleSignup = async () => {
+    const result = await register(name, email, password, gender)
+    if (result.success) {
+      console.log('Registration successful:', result)
+      Alert.alert(
+        'Registration Successful',
+        'You have successfully registered.',
+        [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
+      )
+      // Navigate to the home screen or show a success message
+    } else {
+      console.error('Registration failed:', result.message)
+      Alert.alert(
+        'Registration Failed',
+        result.message,
+        [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
+      )
+      // Show an error message to the user
+    }
+  }
 
   return (
     <KeyboardAvoidingView
