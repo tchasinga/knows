@@ -54,6 +54,38 @@ const useAuthStore = create((set) => ({
       console.error('Error checking authentication:', error);
     }
   },
+
+  logout : async () => {
+    set({ user: null, token: null });
+    await AsyncStorage.removeItem('user');
+    await AsyncStorage.removeItem('token');
+  },
+
+    login: async (email, password) => {
+        set({ isLoading: true });
+        try {
+        const response = await fetch('http://localhost:8000/api/v1/user/signin', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+            set({ user: data.user, token: data.token, isLoading: false });
+            await AsyncStorage.setItem('user', JSON.stringify(data.user));
+            await AsyncStorage.setItem('token', data.token);
+            console.log('Login successful:', data);
+        } else {
+            console.error('Login failed:', data.message);
+            set({ isLoading: false });
+        }
+        } catch (error) {
+        console.error('Error during login:', error);
+        set({ isLoading: false });
+        }
+    },
 }));
 
 export default useAuthStore;
