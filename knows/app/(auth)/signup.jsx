@@ -65,7 +65,7 @@ export default function Signup () {
               />
               <TextInput
                 style={styles.input}
-                placeholder='Enter your email'
+                placeholder='tchasinga@example.com'
                 value={email}
                 onChangeText={setEmail}
                 keyboardType='email-address'
@@ -119,7 +119,7 @@ export default function Signup () {
               />
             </View>
           </View>
-          
+
         </View>
       </View>
     </KeyboardAvoidingView>
