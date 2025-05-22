@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import styles from '../../assets/styles/signup.styles'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { Link } from 'expo-router'
+import { useRouter } from 'expo-router'
 
 export default function Signup () {
   const [name, setName] = useState('')
@@ -19,6 +19,8 @@ export default function Signup () {
   const [gender, setGender] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setLoading] = useState(false)
+
+  const router = useRouter()
 
 
   const handleSignup = () => {}
@@ -137,11 +139,9 @@ export default function Signup () {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already have an account? </Text>
-          <Link href='/login' asChild>
-           <TouchableOpacity>
-              <Text style={styles.link}>Log In</Text>
-           </TouchableOpacity>
-          </Link>
+          <TouchableOpacity onPress={() => router.back('/login')}>
+            <Text style={styles.link}>Log In</Text>
+          </TouchableOpacity>
         </View>
 
         </View>
