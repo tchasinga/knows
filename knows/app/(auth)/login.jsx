@@ -19,9 +19,11 @@ export default function Login () {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
-  const { user, token, isLoading } = useAuthStore()
+  const { user, token, isLoading , login } = useAuthStore()
 
-  const handleLogin = () => {}
+  const handleLogin = () => {
+    login(email, password)
+  }
 
   return (
     <KeyboardAvoidingView
