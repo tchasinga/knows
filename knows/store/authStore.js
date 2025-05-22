@@ -34,8 +34,12 @@ const useAuthStore = create((set) => ({
             set({ isLoading: false });
         }
     } catch (error) {
-      console.error('Error during registration:', error);
-      set({ isLoading: false });
+     set({ isLoading: false });
+     return {
+         success: false,
+         message: 'Error during registration',
+         error
+     };
     }
   },
 }));
