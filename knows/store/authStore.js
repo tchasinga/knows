@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Alert } from 'react-native'
 
 const useAuthStore = create(set => ({
   user: null,
@@ -74,10 +75,26 @@ const useAuthStore = create(set => ({
       if (response.ok) {
         set({ user: data.user, token: data.token, isLoading: false })
         await AsyncStorage.setItem('user', JSON.stringify(data.user))
+        Alert.alert('Login Successful', 'You have successfully logged in.', [
+          {
+            text: 'OK',
+            onPress: () => {
+              // Navigate to the home screen or perform any other action
+            }
+          }
+        ])
         await AsyncStorage.setItem('token', data.token)
         console.log('Login successful:', data)
       } else {
         console.error('Login failed:', data.message)
+        Alert.alert('Login Failed', data.message, [
+          {
+            text: 'OK',
+            onPress: () => {
+              // Handle the error
+            }
+          }
+        ])
         set({ isLoading: false })
       }
     } catch (error) {
