@@ -4,6 +4,7 @@ import linksToMogoDbUrl from './db/linksToMogoDbUrl.js'
 import UserAuth from './routes/user.routes.js'
 import BookNews from './routes/book.routes.js'
 import cors from 'cors'
+import job from './db/cron.js'
 
 // innitialize express app
 const app = express()
@@ -12,6 +13,7 @@ dotenv.config()
 const PORT = process.env.PORT || 8000
 
 // middleware
+job.start()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
