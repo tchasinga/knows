@@ -9,3 +9,6 @@ router.post('/', protect, createBook);
 router.get('/', protect, getAllBooks);
 router.get('/:id', protect, getBookById);
 router.delete('/:id', protect, deleteBook);
+
+
+export default router
