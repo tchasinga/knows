@@ -21,6 +21,14 @@ const useAuthStore = create((set) => ({
             await AsyncStorage.setItem('user', JSON.stringify(data.user));
             await AsyncStorage.setItem('token', data.token);
             console.log('Registration successful:', data);
+           
+            return {
+                success : true,
+                message : 'Registration successful',
+                user : data.user,
+                token : data.token
+            }
+
         } else {
             console.error('Registration failed:', data.message);
             set({ isLoading: false });
