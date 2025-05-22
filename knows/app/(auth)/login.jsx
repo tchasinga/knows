@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Platform,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from 'react-native'
 import styles from '../../assets/styles/login.styles'
 import { useState } from 'react'
@@ -27,6 +28,14 @@ export default function Login () {
     if (result) {
       console.log('Login successful:', user)
       console.log('Token:', token)
+      Alert.alert('Login Successful', 'You have successfully logged in.', [
+        {
+          text: 'OK',
+          onPress: () => {
+            // Navigate to the home screen or perform any other action
+          }
+        }
+      ])
     } else {
       console.error('Login failed:', user)
     }
