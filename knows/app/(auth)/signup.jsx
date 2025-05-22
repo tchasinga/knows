@@ -1,25 +1,116 @@
-import { View, Text, KeyboardAvoidingView, Platform } from 'react-native'
-import React from 'react'
+import { useState } from 'react'
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput
+} from 'react-native'
 import styles from '../../assets/styles/signup.styles'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
-export default function signup() {
+export default function Signup () {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [gender, setGender] = useState('')
+
   return (
-   <KeyboardAvoidingView
-         style={{ flex: 1 }}
-         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-       >
-     <View style={styles.container}>
-       <View style={styles.card}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Create an Account</Text>
-          <Text style={styles.subtitle}>Sign up to get started</Text>
-        </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <View style={styles.header}>
+            <Text style={styles.title}>Create an Account</Text>
+            <Text style={styles.subtitle}>Sign up to get started</Text>
+          </View>
 
-        <View style={styles.formContainer}>
-          
+          <View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>user name</Text>
+              <View style={styles.inputContainer}>
+                <Ionicons
+                  name='person-outline'
+                  size={24}
+                  color='black'
+                  style={styles.inputIcon}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder='Enter your user name'
+                  value={name}
+                  onChangeText={setName}
+                  keyboardType='default'
+                  autoCapitalize='none'
+                />
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Email</Text>
+            <View style={styles.inputContainer}>
+              <Ionicons
+                name='mail-outline'
+                size={24}
+                color='black'
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder='Enter your email'
+                value={email}
+                onChangeText={setEmail}
+                keyboardType='email-address'
+                autoCapitalize='none'
+              />
+            </View>
+          </View>
+
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.inputContainer}>
+              <Ionicons
+                name='lock-closed-outline'
+                size={24}
+                color='black'
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder='Enter your password'
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+              />
+            </View>
+          </View>
+
+          {/* adding a gender */}
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Gender</Text>
+            <View style={styles.inputContainer}>
+              <Ionicons
+                name='person-outline'
+                size={24}
+                color='black'
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder='Enter your gender'
+                value={gender}
+                onChangeText={setGender}
+                keyboardType='default'
+                autoCapitalize='none'
+              />
+            </View>
+          </View>
+
         </View>
-       </View>
-     </View>
+      </View>
     </KeyboardAvoidingView>
   )
 }

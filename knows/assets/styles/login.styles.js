@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     marginBottom: 16,
-
   },
   inputGroup: {
     marginBottom: 20,
