@@ -19,16 +19,15 @@ export default function Login () {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
-  const { user, token, isLoading , login } = useAuthStore()
+  const { user, token, isLoading, login } = useAuthStore()
 
   const handleLogin = () => {
-   const result = login(email, password)
+    const result = login(email, password)
 
     if (result) {
       console.log('Login successful:', user)
       console.log('Token:', token)
-    }
-    else {
+    } else {
       console.error('Login failed:', user)
     }
   }
