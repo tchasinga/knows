@@ -24,6 +24,11 @@ export default function Signup () {
 
   const router = useRouter()
 
+  // check if fields are empty
+  if (!name || !email || !password || !gender) {
+    Alert.alert('Missing Fields', 'Please fill in all fields.')
+  }
+
   const handleSignup = async () => {
     const result = await register(name, email, password, gender)
     if (result.success) {
