@@ -88,11 +88,11 @@ export default function Signup () {
                 secureTextEntry={!showPassword}
               />
               <Ionicons
-              name={showPassword ? 'eye-outline' : 'eye-off-outline'}
-              size={24}
-              color='black'
-              onPress={() => setShowPassword(!showPassword)}
-            />
+                name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                size={24}
+                color='black'
+                onPress={() => setShowPassword(!showPassword)}
+              />
             </View>
           </View>
 
@@ -116,7 +116,6 @@ export default function Signup () {
               />
             </View>
           </View>
-
         </View>
       </View>
     </KeyboardAvoidingView>
