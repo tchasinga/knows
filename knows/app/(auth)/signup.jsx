@@ -4,10 +4,13 @@ import {
   Text,
   KeyboardAvoidingView,
   Platform,
-  TextInput
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native'
 import styles from '../../assets/styles/signup.styles'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import { Link } from 'expo-router'
 
 export default function Signup () {
   const [name, setName] = useState('')
@@ -119,6 +122,27 @@ export default function Signup () {
               />
             </View>
           </View>
+
+           <TouchableOpacity
+          style={styles.button}
+          onPress={handleSignup}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <ActivityIndicator size='small' color='#fff' />
+          ) : (
+            <Text style={styles.buttonText}>Sign Up</Text>
+          )}
+        </TouchableOpacity>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Already have an account? </Text>
+          <Link href='/login' asChild>
+           <TouchableOpacity>
+              <Text style={styles.link}>Log In</Text>
+           </TouchableOpacity>
+          </Link>
+        </View>
 
         </View>
       </View>

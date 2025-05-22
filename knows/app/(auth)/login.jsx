@@ -102,6 +102,7 @@ export default function Login () {
            </TouchableOpacity>
           </Link>
         </View>
+        
       </View>
     </View>
     </KeyboardAvoidingView>
