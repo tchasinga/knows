@@ -11,6 +11,7 @@ import {
 import styles from '../../assets/styles/signup.styles'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router'
+import useAuthStore from '../../store/authStore'
 
 export default function Signup () {
   const [name, setName] = useState('')
@@ -18,7 +19,7 @@ export default function Signup () {
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setLoading] = useState(false)
+  const {user, token, isLoading, register} = useAuthStore()
 
   const router = useRouter()
 
