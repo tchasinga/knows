@@ -14,6 +14,10 @@ export default function signup() {
           <Text style={styles.title}>Create an Account</Text>
           <Text style={styles.subtitle}>Sign up to get started</Text>
         </View>
+
+        <View style={styles.formContainer}>
+          
+        </View>
        </View>
      </View>
     </KeyboardAvoidingView>
