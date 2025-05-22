@@ -22,7 +22,15 @@ export default function Login () {
   const { user, token, isLoading , login } = useAuthStore()
 
   const handleLogin = () => {
-    login(email, password)
+   const result = login(email, password)
+
+    if (result) {
+      console.log('Login successful:', user)
+      console.log('Token:', token)
+    }
+    else {
+      console.error('Login failed:', user)
+    }
   }
 
   return (
