@@ -1,8 +1,12 @@
 import { View, StyleSheet} from 'react-native'
 import { Image } from 'expo-image'
 import { Link } from 'expo-router'
+import useAuthStore from '../store/authStore.js'
 
 export default function Index () {
+  
+  const { user, token, isLoading } = useAuthStore()
+
   return (
     <View style={styles.Container}>
 
