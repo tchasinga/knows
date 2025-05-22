@@ -3,13 +3,15 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  Platform
 } from 'react-native'
 import styles from '../../assets/styles/login.styles'
 import { useState } from 'react'
 import { Image } from 'expo-image'
 import Ionicons from '../../node_modules/@expo/vector-icons/Ionicons.d'
 import { Link } from 'expo-router';
+import { KeyboardAvoidingView } from 'react-native'
 
 export default function Login () {
   const [email, setEmail] = useState('')
@@ -20,15 +22,19 @@ export default function Login () {
   const handleLogin = () => {}
 
   return (
-    <View style={styles.container}>
-      <View style={styles.topIllustration}>
-        <Image
-          source={require('../../assets/images/Bookshop-amico.png')}
-          style={styles.illustrationImage}
-        />
-      </View>
-      {/* addinng form here for data collection */}
-      <View style={styles.card}>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.container}>
+        <View style={styles.topIllustration}>
+          <Image
+            source={require('../../assets/images/Bookshop-amico.png')}
+            style={styles.illustrationImage}
+          />
+        </View>
+        {/* addinng form here for data collection */}
+        <View style={styles.card}>
         <View style={styles.formContainer}>
           {/* EMAIL */}
           <View style={styles.inputGroup}>
@@ -69,7 +75,7 @@ export default function Login () {
               secureTextEntry={!showPassword}
             />
             <Ionicons
-              name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+              name={showPassword ? 'eye-outline' : 'eye-off-outline'}
               size={24}
               color='black'
               onPress={() => setShowPassword(!showPassword)}
@@ -98,5 +104,6 @@ export default function Login () {
         </View>
       </View>
     </View>
+    </KeyboardAvoidingView>
   )
 }
