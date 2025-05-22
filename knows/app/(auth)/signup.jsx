@@ -17,6 +17,9 @@ export default function Signup () {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setLoading] = useState(false)
 
+
+  const handleSignup = () => {}
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -116,6 +119,7 @@ export default function Signup () {
               />
             </View>
           </View>
+          
         </View>
       </View>
     </KeyboardAvoidingView>
