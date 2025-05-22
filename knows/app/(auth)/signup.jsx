@@ -20,10 +20,9 @@ export default function Signup () {
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const {user, token, isLoading, register} = useAuthStore()
+  const { user, token, isLoading, register } = useAuthStore()
 
   const router = useRouter()
-  
 
   const handleSignup = async () => {
     const result = await register(name, email, password, gender)
@@ -37,11 +36,9 @@ export default function Signup () {
       // Navigate to the home screen or show a success message
     } else {
       console.error('Registration failed:', result.message)
-      Alert.alert(
-        'Registration Failed',
-        result.message,
-        [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
-      )
+      Alert.alert('Registration Failed', result.message, [
+        { text: 'OK', onPress: () => console.log('OK Pressed') }
+      ])
       // Show an error message to the user
     }
   }
@@ -146,25 +143,24 @@ export default function Signup () {
             </View>
           </View>
 
-           <TouchableOpacity
-          style={styles.button}
-          onPress={handleSignup}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <ActivityIndicator size='small' color='#fff' />
-          ) : (
-            <Text style={styles.buttonText}>Sign Up</Text>
-          )}
-        </TouchableOpacity>
-
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>Already have an account? </Text>
-          <TouchableOpacity onPress={() => router.back('/login')}>
-            <Text style={styles.link}>Log In</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSignup}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <ActivityIndicator size='small' color='#fff' />
+            ) : (
+              <Text style={styles.buttonText}>Sign Up</Text>
+            )}
           </TouchableOpacity>
-        </View>
 
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Already have an account? </Text>
+            <TouchableOpacity onPress={() => router.back('/login')}>
+              <Text style={styles.link}>Log In</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </KeyboardAvoidingView>
