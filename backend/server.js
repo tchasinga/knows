@@ -10,7 +10,7 @@ import job from './db/cron.js'
 const app = express()
 
 dotenv.config()
-const PORT = process.env.PORT || 8000
+const PORT = 8000
 
 // middleware
 job.start()

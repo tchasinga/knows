@@ -27,7 +27,7 @@ export default function Create () {
   const [imageBase64, setImageBase64] = useState(null)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { user } = useAuthStore()
+  const { token } = useAuthStore()
 
   const handleSubmit = async () => {
     if (!title || !caption || !image) {
@@ -38,6 +38,12 @@ export default function Create () {
     try {
       setLoading(true)
       // get file extension from uri or default to jpeg
+
+      if (!token) {
+        Alert.alert('Error', 'You need to be logged in to post a book')
+        return
+      }
+
       const uriParts = image.split('.')
       const fileType = uriParts[uriParts.length - 1]
       const imageType = fileType
@@ -50,7 +56,7 @@ export default function Create () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`
+          Authorization: `Bearer ${token}` // Must be exactly "Bearer [token]"
         },
         body: JSON.stringify({
           title,
