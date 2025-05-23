@@ -32,12 +32,14 @@ export default function Create () {
       // request for image picker permission
       if(Platform.OS === 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
+        console.log("Media Library Status:")
         if (status !== 'granted') {
           Alert.alert('Sorry, we need media library permissions to make this work!')
+          console.log("Media Library Status on view:", {status})
           return
         }
       }
-    } catch (_error) {
+    } catch (error) {
       Alert.alert('Error', 'Something went wrong while uploading the image.')
     }
   }
