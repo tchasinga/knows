@@ -27,7 +27,7 @@ export default function Create() {
   const [imageBase64, setImageBase64] = useState(null)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { user } = useAuthStore()
+  const { token } = useAuthStore()
 
   const handleSubmit = async () => {
     if (!title || !caption || !image) {
@@ -42,13 +42,15 @@ export default function Create() {
       const fileType = uriParts[uriParts.length - 1]
       const imageType = fileType ? `image/${fileType.toLowerCase()}` : 'image/jpeg'
 
+      const imageDataUrl = `data:${imageType};base64,${imageBase64}`
+
       const response = await fetch(
         'http://localhost:8000/api/v2/book',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${user?.token}`
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify({
             title,
