@@ -13,8 +13,19 @@ export default function RootLayout () {
   const {checkAuth ,user, token } = useAuthStore()
 
   // Check if user is logged in
-  
- 
+  useEffect(() =>{
+    checkAuth()
+  })
+
+  // Redirect to login if not logged in
+  useEffect(() => {
+    if (!user && !token && segments[0] !== '(auth)') {
+      router.replace('(auth)')
+    } else if (user && token && segments[0] === '(auth)') {
+      router.replace('(tabs)')
+    }
+  }, [user, token, router, segments])
+
   return (
     <SafeAreaProvider>
       <SafeScreen>
