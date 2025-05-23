@@ -12,7 +12,7 @@ export default function Create() {
 
   return (
     <View>
-      <Text>create</Text>
+      <Text>create is online</Text>
     </View>
   )
 }
