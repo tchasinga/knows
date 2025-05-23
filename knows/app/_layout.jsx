@@ -8,7 +8,7 @@ import useAuthStore from '../store/authStore.js'
 export default function RootLayout () {
   const router = useRouter()
   const segments = useSegments()
-  const { user, token } = useAuthStore()
+  const {checkAuth ,user, token } = useAuthStore()
 
   // Check if user is logged in
 
