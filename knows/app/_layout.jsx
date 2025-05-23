@@ -2,10 +2,15 @@ import { Stack, useRouter, useSegments } from 'expo-router'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import SafeScreen from '../components/SafeScreen'
 import { StatusBar } from 'expo-status-bar'
+import useAuthStore from '../store/authStore.js'
+
 
 export default function RootLayout () {
   const router = useRouter()
   const segments = useSegments()
+  const { user, token } = useAuthStore()
+
+  // Check if user is logged in
 
   return (
     <SafeAreaProvider>
