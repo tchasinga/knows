@@ -36,9 +36,15 @@ export default function Create () {
         if (status !== 'granted') {
           Alert.alert('Sorry, we need media library permissions to make this work!')
           console.log("Media Library Status on view:", {status})
-          return
+          return;
         }
       }
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: "images",
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1
+      })
     } catch (error) {
       Alert.alert('Error', 'Something went wrong while uploading the image.')
     }
