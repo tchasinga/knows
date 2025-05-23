@@ -7,6 +7,8 @@ export default function Create() {
   const [caption, setCaption] = useState('')
   const [ratinng, setRating] = useState(2)
   const [image, setImage] = useState(null)
+  const [imageBase64, setImageBase64] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   return (
     <View>
