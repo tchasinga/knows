@@ -91,7 +91,10 @@ export default function Create () {
            {/* Image Picker */}
             <View style={styles.formGroup}>
               <Text style={styles.label}>Upload Image</Text>
-             
+              <TouchableOpacity
+                style={styles.imagePicker}
+                onPress={handleImageUpload}
+              ></TouchableOpacity>
             </View>
 
           </View>
