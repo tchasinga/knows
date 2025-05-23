@@ -106,7 +106,7 @@ export default function Create () {
           <Text style={styles.subtitle}>Share your thoughts and reviews</Text>
 
           <View style={styles.form}>
-            <View style={styles.inputGroup}>
+            <View style={styles.formGroup}>
               <Text style={styles.label}>Book Title</Text>
               <View style={styles.inputContainer}>
                 <Ionicons
@@ -152,6 +152,19 @@ export default function Create () {
                   </View>
                 )}
               </TouchableOpacity>
+            </View>
+
+            <View style={styles.formGroup}>
+              <Text style={styles.label}>Book Title</Text>
+                <TextInput
+                  style={styles.textArea}
+                  placeholder='Enter the book title'
+                  value={caption}
+                  onChangeText={setCaption}
+                  keyboardType='default'
+                  autoCapitalize='none'
+                  multiline
+                />
             </View>
 
           </View>
