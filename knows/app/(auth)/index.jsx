@@ -7,10 +7,10 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native'
-import styles from '../../assets/styles/login.styles'
+import styles from '../../assets/styles/login.styles.js'
 import { useState } from 'react'
 import { Image } from 'expo-image'
-import Ionicons from '../../node_modules/@expo/vector-icons/Ionicons.d'
+import Ionicons from '@expo/vector-icons/Ionicons.js'
 import { Link } from 'expo-router'
 import useAuthStore from '../../store/authStore.js'
 
