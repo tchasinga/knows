@@ -14,6 +14,7 @@ import styles from '../../assets/styles/create.styles.js'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import COLORS from '../../constant/colors'
 import { Image } from 'expo-image'
+import * as ImagePicker from 'expo-image-picker'
 
 export default function Create () {
   const [title, setTitle] = useState('')
@@ -30,7 +31,7 @@ export default function Create () {
     try {
       // request for image picker permission
       if(Platform.OS === 'web') {
-        const { status } = await Image.requestMediaLibraryPermissionsAsync()
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
         if (status !== 'granted') {
           Alert.alert('Sorry, we need media library permissions to make this work!')
           return
