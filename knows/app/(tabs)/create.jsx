@@ -12,6 +12,7 @@ import { useRouter } from 'expo-router'
 import styles from '../../assets/styles/create.styles.js'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import COLORS from '../../constant/colors'
+import { Image } from 'expo-image'
 
 export default function Create () {
   const [title, setTitle] = useState('')
@@ -86,6 +87,12 @@ export default function Create () {
              <Text style={styles.label}>Pick rating</Text>
              {renderRatingPicker()}
            </View>
+
+           {/* Image Picker */}
+            <View style={styles.formGroup}>
+              <Text style={styles.label}>Upload Image</Text>
+             
+            </View>
 
           </View>
         </View>
