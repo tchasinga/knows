@@ -188,7 +188,7 @@ export default function Create () {
                     color='white'
                     style={styles.buttonIcon}
                   />
-                  <Text style={styles.buttonText}>Create book</Text>
+                  <Text style={styles.buttonText}>Post a book</Text>
                 </View>
               )}
             </TouchableOpacity>
