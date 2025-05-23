@@ -155,10 +155,10 @@ export default function Create () {
             </View>
 
             <View style={styles.formGroup}>
-              <Text style={styles.label}>Book Title</Text>
+              <Text style={styles.label}>Book description</Text>
                 <TextInput
                   style={styles.textArea}
-                  placeholder='Enter the book title'
+                  placeholder='Enter the book description'
                   value={caption}
                   onChangeText={setCaption}
                   keyboardType='default'
