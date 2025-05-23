@@ -37,6 +37,11 @@ export default function Create() {
     
     try {
       setLoading(true)
+      // get file extension from uri or default to jpeg
+      const uriParts = image.split('.')
+      const fileType = uriParts[uriParts.length - 1]
+      const imageType = fileType ? `image/${fileType.toLowerCase()}` : 'image/jpeg'
+
       const response = await fetch(
         'http://localhost:8000/api/v2/book',
         {
