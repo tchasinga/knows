@@ -55,8 +55,8 @@ export default function Create() {
           body: JSON.stringify({
             title,
             caption,
-            rating,
-            image: imageBase64
+            rating: rating.toString(),
+            image: imageDataUrl
           })
         }
       )
