@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { View, Text, Platform, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { useRouter } from 'expo-router' 
+import styles from '../../assets/styles/create.styles.js'
 
 export default function Create() {
 
@@ -22,7 +23,11 @@ export default function Create() {
          style={{ flex: 1 }}
          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
        >
-      <Text>create is online</Text>
+      <ScrollView
+      
+      >
+
+      </ScrollView>
     </KeyboardAvoidingView>
   )
 }
