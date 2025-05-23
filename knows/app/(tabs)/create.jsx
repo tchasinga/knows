@@ -6,7 +6,8 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
 import { useRouter } from 'expo-router'
 import styles from '../../assets/styles/create.styles.js'
@@ -25,7 +26,20 @@ export default function Create () {
 
   const handleSubmit = async () => {}
 
-  const handleImageUpload = async () => {}
+  const handleImageUpload = async () => {
+    try {
+      // request for image picker permission
+      if(Platform.OS === 'web') {
+        const { status } = await Image.requestCameraRollPermissionsAsync()
+        if (status !== 'granted') {
+          Alert.alert('Sorry, we need camera roll permissions to make this work!')
+          return
+        }
+      }
+    } catch (_error) {
+      Alert.alert('Error', 'Something went wrong while uploading the image.')
+    }
+  }
 
   const renderRatingPicker = async () => {
     const stars = []
