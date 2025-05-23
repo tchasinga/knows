@@ -30,9 +30,9 @@ export default function Create () {
     try {
       // request for image picker permission
       if(Platform.OS === 'web') {
-        const { status } = await Image.requestCameraRollPermissionsAsync()
+        const { status } = await Image.requestMediaLibraryPermissionsAsync()
         if (status !== 'granted') {
-          Alert.alert('Sorry, we need camera roll permissions to make this work!')
+          Alert.alert('Sorry, we need media library permissions to make this work!')
           return
         }
       }
