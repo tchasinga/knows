@@ -10,7 +10,7 @@ import {
 import styles from '../../assets/styles/login.styles.js'
 import { useState } from 'react'
 import { Image } from 'expo-image'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Ionicons from '@expo/vector-icons/Ionicons.js'
 import { Link } from 'expo-router'
 import useAuthStore from '../../store/authStore.js'
 
