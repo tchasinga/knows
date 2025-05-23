@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { View, Text } from 'react-native'
-import React from 'react'
 
-export default function create() {
+export default function Create() {
+
+  const [title, setTitle] = useState('') 
+
   return (
     <View>
       <Text>create</Text>
