@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   Platform,
   KeyboardAvoidingView,
-  Alert
 } from 'react-native'
 import styles from '../../assets/styles/login.styles'
 import { useState } from 'react'
