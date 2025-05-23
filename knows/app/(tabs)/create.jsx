@@ -27,7 +27,7 @@ export default function Create () {
   const [imageBase64, setImageBase64] = useState(null)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { token } = useAuthStore()
+  const { user } = useAuthStore()
 
   const handleSubmit = async () => {
     if (!title || !caption || !image) {
@@ -50,7 +50,7 @@ export default function Create () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${user.token}`
         },
         body: JSON.stringify({
           title,

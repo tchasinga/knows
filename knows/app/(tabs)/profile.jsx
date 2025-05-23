@@ -16,6 +16,7 @@ export default function Profile() {
       <Text>profile</Text>
       <Text>{user?.name}</Text>
       <Text>{user?.email}</Text>
+      <Text>{user?.token}</Text>
       <Text onPress={handleLogout}>Logout</Text>
     </View>
   )
