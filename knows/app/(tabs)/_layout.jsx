@@ -1,10 +1,7 @@
-import { View, Text } from 'react-native'
-import React from 'react'
 import { Tabs } from 'expo-router'
 
-
 // add tabs layout
-export default function TabsLayout() {
+export default function TabsLayout () {
   return (
     <Tabs>
       <Tabs.Screen name='index' options={{ title: 'Home' }} />
