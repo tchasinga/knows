@@ -68,6 +68,11 @@ export default function Create () {
       const data = await response.json()
       if (response.ok) {
         Alert.alert('Success', 'Book posted successfully!')
+        setTitle('')
+        setCaption('')
+        setImage(null)
+        setImageBase64(null)
+        setRating(2)
         router.push('/(tabs)')
       } else {
         Alert.alert('Error', data.message || 'Something went wrong.')
