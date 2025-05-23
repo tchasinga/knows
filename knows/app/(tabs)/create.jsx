@@ -19,7 +19,7 @@ import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
 import useAuthStore from '../../store/authStore.js'
 
-export default function Create() {
+export default function Create () {
   const [title, setTitle] = useState('')
   const [caption, setCaption] = useState('')
   const [rating, setRating] = useState(2)
@@ -34,32 +34,31 @@ export default function Create() {
       Alert.alert('Error', 'Please fill in all fields.')
       return
     }
-    
+
     try {
       setLoading(true)
       // get file extension from uri or default to jpeg
       const uriParts = image.split('.')
       const fileType = uriParts[uriParts.length - 1]
-      const imageType = fileType ? `image/${fileType.toLowerCase()}` : 'image/jpeg'
+      const imageType = fileType
+        ? `image/${fileType.toLowerCase()}`
+        : 'image/jpeg'
 
       const imageDataUrl = `data:${imageType};base64,${imageBase64}`
 
-      const response = await fetch(
-        'http://localhost:8000/api/v2/book',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            title,
-            caption,
-            rating: rating.toString(),
-            image: imageDataUrl
-          })
-        }
-      )
+      const response = await fetch('http://localhost:8000/api/v2/book', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          title,
+          caption,
+          rating: rating.toString(),
+          image: imageDataUrl
+        })
+      })
       const data = await response.json()
       if (response.ok) {
         Alert.alert('Success', 'Book posted successfully!')
@@ -69,7 +68,7 @@ export default function Create() {
       }
     } catch (error) {
       console.error('Error:', error)
-      Alert.alert('Error', 'Something went wrong while posting the book.')        
+      Alert.alert('Error', 'Something went wrong while posting the book.')
     } finally {
       setLoading(false)
     }
@@ -78,7 +77,8 @@ export default function Create() {
   const handleImageUpload = async () => {
     try {
       if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
+        const { status } =
+          await ImagePicker.requestMediaLibraryPermissionsAsync()
         if (status !== 'granted') {
           Alert.alert(
             'Sorry, we need media library permissions to make this work!'
@@ -86,9 +86,9 @@ export default function Create() {
           return
         }
       }
-      
+
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: "images",
+        mediaTypes: 'images',
         allowsEditing: true,
         aspect: [4, 3],
         quality: 0.5,
@@ -97,10 +97,12 @@ export default function Create() {
 
       if (!result.canceled) {
         setImage(result.assets[0].uri)
-        setImageBase64(result.assets[0].base64 || await FileSystem.readAsStringAsync(
-          result.assets[0].uri,
-          { encoding: FileSystem.EncodingType.Base64 }
-        ))
+        setImageBase64(
+          result.assets[0].base64 ||
+            (await FileSystem.readAsStringAsync(result.assets[0].uri, {
+              encoding: FileSystem.EncodingType.Base64
+            }))
+        )
       }
     } catch (error) {
       Alert.alert('Error', 'Something went wrong while uploading the image.')
@@ -110,7 +112,7 @@ export default function Create() {
   const renderRatingPicker = useCallback(() => {
     return (
       <View style={styles.ratingContainer}>
-        {[1, 2, 3, 4, 5].map((i) => (
+        {[1, 2, 3, 4, 5].map(i => (
           <TouchableOpacity
             key={i}
             onPress={() => setRating(i)}
@@ -135,7 +137,7 @@ export default function Create() {
     >
       <ScrollView
         contentContainerStyle={styles.container}
-        keyboardShouldPersistTaps="handled"
+        keyboardShouldPersistTaps='handled'
       >
         <View style={styles.card}>
           <Text style={styles.title}>Create a new books post</Text>
@@ -146,19 +148,19 @@ export default function Create() {
               <Text style={styles.label}>Book Title</Text>
               <View style={styles.inputContainer}>
                 <Ionicons
-                  name="book-outline"
+                  name='book-outline'
                   size={24}
-                  color="black"
+                  color='black'
                   style={styles.inputIcon}
                 />
                 <TextInput
                   style={styles.input}
-                  placeholder="Enter the book title"
+                  placeholder='Enter the book title'
                   value={title}
                   onChangeText={setTitle}
-                  keyboardType="default"
-                  autoCapitalize="none"
-                  returnKeyType="next"
+                  keyboardType='default'
+                  autoCapitalize='none'
+                  returnKeyType='next'
                 />
               </View>
             </View>
@@ -179,7 +181,7 @@ export default function Create() {
                 ) : (
                   <View style={styles.placeholderContainer}>
                     <Ionicons
-                      name="image-outline"
+                      name='image-outline'
                       size={24}
                       color={COLORS.textSecondary}
                       style={styles.placeholderIcon}
@@ -194,13 +196,13 @@ export default function Create() {
               <Text style={styles.label}>Book description</Text>
               <TextInput
                 style={styles.textArea}
-                placeholder="Enter the book description"
+                placeholder='Enter the book description'
                 value={caption}
                 onChangeText={setCaption}
-                keyboardType="default"
-                autoCapitalize="none"
+                keyboardType='default'
+                autoCapitalize='none'
                 multiline
-                returnKeyType="done"
+                returnKeyType='done'
               />
             </View>
 
@@ -210,13 +212,13 @@ export default function Create() {
               disabled={loading}
             >
               {loading ? (
-                <ActivityIndicator size="small" color="#fff" />
+                <ActivityIndicator size='small' color='#fff' />
               ) : (
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Ionicons
-                    name="cloud-upload-outline"
+                    name='cloud-upload-outline'
                     size={24}
-                    color="white"
+                    color='white'
                     style={styles.buttonIcon}
                   />
                   <Text style={styles.buttonText}>Post a book</Text>
