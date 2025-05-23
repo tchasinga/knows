@@ -12,7 +12,6 @@ export default function Profile () {
   return (
     <View>
       <Text>profile</Text>
-      <Text>{user?.user?.token || 'No token available'}</Text>
       <Text>{user.name}</Text>
       <Text>{user.email}</Text>
 
