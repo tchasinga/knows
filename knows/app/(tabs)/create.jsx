@@ -24,7 +24,10 @@ export default function Create() {
          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
        >
       <ScrollView
-      
+        style={styles.scrollViewStyle}
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
 
       </ScrollView>
