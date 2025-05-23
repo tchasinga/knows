@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: COLORS.textSecondary,
     textAlign: "center",
+    marginBottom:30,
   },
   form: {
     marginBottom: 16,
@@ -49,8 +50,10 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     marginBottom: 8,
+    marginTop: 12,
     color: COLORS.textPrimary,
     fontWeight: "500",
+
   },
   inputContainer: {
     flexDirection: "row",

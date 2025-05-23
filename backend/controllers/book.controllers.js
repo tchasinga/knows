@@ -10,12 +10,13 @@ export const createBook = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' })
     }
 
-    if (rating < 0 || rating > 5) {
-      return res.status(400).json({ message: 'Rating must be between 0 and 5' })
+    // Add explicit check for user
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ message: 'Not authenticated' })
     }
 
-    if (!image) {
-      return res.status(400).json({ message: 'Image is required' })
+    if (rating < 0 || rating > 5) {
+      return res.status(400).json({ message: 'Rating must be between 0 and 5' })
     }
 
     // Upload image to cloudinary
@@ -24,17 +25,17 @@ export const createBook = async (req, res) => {
       width: 500,
       crop: 'scale'
     })
+
     const newBook = new Book({
       title,
       caption,
       image: result.secure_url,
       rating,
-      user: req.user._id
+      user: req.user._id // Now we're sure this exists
     })
+
     await newBook.save()
-    res
-      .status(201)
-      .json({ message: 'Book created successfully', book: newBook })
+    res.status(201).json({ message: 'Book created successfully', book: newBook })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

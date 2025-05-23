@@ -6,12 +6,11 @@ import {
   ActivityIndicator,
   Platform,
   KeyboardAvoidingView,
-  Alert
 } from 'react-native'
-import styles from '../../assets/styles/login.styles'
+import styles from '../../assets/styles/login.styles.js'
 import { useState } from 'react'
 import { Image } from 'expo-image'
-import Ionicons from '../../node_modules/@expo/vector-icons/Ionicons.d'
+import Ionicons from '@expo/vector-icons/Ionicons'
 import { Link } from 'expo-router'
 import useAuthStore from '../../store/authStore.js'
 
@@ -29,7 +28,6 @@ export default function Login () {
       console.log('Login successful:', user)
       console.log('Token:', token)
     } else {
-      console.error('Login failed:', user)
     }
   }
 
