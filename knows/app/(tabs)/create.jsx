@@ -17,6 +17,7 @@ import COLORS from '../../constant/colors'
 import { Image } from 'expo-image'
 import * as ImagePicker from 'expo-image-picker'
 import * as FileSystem from 'expo-file-system'
+import useAuthStore from '../../store/authStore.js'
 
 export default function Create () {
   const [title, setTitle] = useState('')
@@ -26,8 +27,47 @@ export default function Create () {
   const [imageBase64, setImageBase64] = useState(null)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const { token, user } = useAuthStore()
 
-  const handleSubmit = async () => {}
+  const handleSubmit = async () => {
+    if (!title || !caption || !image) {
+      Alert.alert('Error', 'Please fill in all fields.')
+      return
+    }
+      try {
+        setLoading(true)
+        // http://localhost:8000/api/v2/book
+        const response = await fetch(
+          'http://localhost:8000/api/v2/book',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${user?.token}`
+            },
+            body: JSON.stringify({
+              title,
+              caption,
+              rating,
+              image: imageBase64
+            })
+          }
+        )
+        const data = await response.json()
+        console.log('Response:', { data })
+        if (response.ok) {
+          Alert.alert('Success', 'Book posted successfully!')
+          router.push('/(tabs)')
+        } else {
+          Alert.alert('Error', data.message || 'Something went wrong.')
+        }
+      } catch (error) {
+        console.error('Error:', error)
+        Alert.alert('Error', 'Something went wrong while posting the book.')        
+      }
+    }
+
+     
 
   const handleImageUpload = async () => {
     try {
