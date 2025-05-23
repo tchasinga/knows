@@ -41,7 +41,7 @@ export default function Create () {
 
           <View style={styles.form}>
             <View style={styles.inputGroup}>
-              <Text style={styles.label}>Title</Text>
+              <Text style={styles.label}>Book Title</Text>
               <View style={styles.inputContainer}>
                 <Ionicons
                   name='book-outline'
@@ -60,7 +60,7 @@ export default function Create () {
               </View>
             </View>
 
-            
+
           </View>
         </View>
       </ScrollView>
