@@ -15,6 +15,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import COLORS from '../../constant/colors'
 import { Image } from 'expo-image'
 import * as ImagePicker from 'expo-image-picker'
+import * as FileSystem from 'expo-file-system'
 
 export default function Create () {
   const [title, setTitle] = useState('')
@@ -54,6 +55,12 @@ export default function Create () {
         
         if (result.assets[0].base64) {
           setImageBase64(result.assets[0].base64)
+        }else{
+          // convert to base64
+          const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
+            encoding: FileSystem.EncodingType.Base64,
+          })
+          setImageBase64(base64)
         }
         console.log("Image Base64:", {base64: result.assets[0].base64})
       }
