@@ -29,6 +29,10 @@ export default function Create() {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
+        <View style={styles.card}>
+          <Text style={styles.title}>Create a new books post</Text>
+          <Text style={styles.subtitle}>Share your thoughts and reviews</Text>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   )
