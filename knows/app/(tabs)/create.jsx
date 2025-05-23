@@ -181,7 +181,15 @@ export default function Create () {
               {loading ? (
                 <ActivityIndicator size='small' color='#fff' />
               ) : (
-                <Text style={styles.buttonText}>Create book</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Ionicons
+                    name='cloud-upload-outline'
+                    size={24}
+                    color='white'
+                    style={styles.buttonIcon}
+                  />
+                  <Text style={styles.buttonText}>Create book</Text>
+                </View>
               )}
             </TouchableOpacity>
           </View>
