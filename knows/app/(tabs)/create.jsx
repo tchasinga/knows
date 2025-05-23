@@ -32,40 +32,45 @@ export default function Create () {
   const handleImageUpload = async () => {
     try {
       // request for image picker permission
-      if(Platform.OS === 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
-        console.log("Media Library Status:" , {status})
+      if (Platform.OS === 'web') {
+        const { status } =
+          await ImagePicker.requestMediaLibraryPermissionsAsync()
+        console.log('Media Library Status:', { status })
         if (status !== 'granted') {
-          Alert.alert('Sorry, we need media library permissions to make this work!')
-          console.log("Media Library Status on view:", {status})
-          return;
+          Alert.alert(
+            'Sorry, we need media library permissions to make this work!'
+          )
+          console.log('Media Library Status on view:', { status })
+          return
         }
       }
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: "images",
+        mediaTypes: 'images',
         allowsEditing: true,
         aspect: [4, 3],
         quality: 0.5,
-        base64 : true,
+        base64: true
       })
 
-      console.log("Image Picker Result:", {result})
+      console.log('Image Picker Result:', { result })
 
       if (!result.canceled) {
         setImage(result.assets[0].uri)
-        
+
         if (result.assets[0].base64) {
           setImageBase64(result.assets[0].base64)
-        }else{
+        } else {
           // convert to base64
-          const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
-            encoding: FileSystem.EncodingType.Base64,
-          })
+          const base64 = await FileSystem.readAsStringAsync(
+            result.assets[0].uri,
+            {
+              encoding: FileSystem.EncodingType.Base64
+            }
+          )
           setImageBase64(base64)
         }
-        console.log("Image Base64:", {base64: result.assets[0].base64})
+        console.log('Image Base64:', { base64: result.assets[0].base64 })
       }
-
     } catch (error) {
       Alert.alert('Error', 'Something went wrong while uploading the image.')
     }
@@ -76,14 +81,14 @@ export default function Create () {
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <TouchableOpacity
-        key={i}
-        onPress={() => setRating(i)}
-        style={styles.starButton}
+          key={i}
+          onPress={() => setRating(i)}
+          style={styles.starButton}
         >
           <Ionicons
             name={i <= rating ? 'star' : 'star-outline'}
             size={24}
-            color={i <= rating ? "#f4b400" : COLORS.textSecondary}
+            color={i <= rating ? '#f4b400' : COLORS.textSecondary}
           />
         </TouchableOpacity>
       )
@@ -127,12 +132,12 @@ export default function Create () {
               </View>
             </View>
 
-           <View style={styles.inputGroup}>
-             <Text style={styles.label}>Pick rating</Text>
-             {renderRatingPicker()}
-           </View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.label}>Pick rating</Text>
+              {renderRatingPicker()}
+            </View>
 
-           {/* Image Picker */}
+            {/* Image Picker */}
             <View style={styles.formGroup}>
               <Text style={styles.label}>Upload Image</Text>
               <TouchableOpacity
@@ -157,30 +162,28 @@ export default function Create () {
 
             <View style={styles.formGroup}>
               <Text style={styles.label}>Book description</Text>
-                <TextInput
-                  style={styles.textArea}
-                  placeholder='Enter the book description'
-                  value={caption}
-                  onChangeText={setCaption}
-                  keyboardType='default'
-                  autoCapitalize='none'
-                  multiline
-                />
+              <TextInput
+                style={styles.textArea}
+                placeholder='Enter the book description'
+                value={caption}
+                onChangeText={setCaption}
+                keyboardType='default'
+                autoCapitalize='none'
+                multiline
+              />
             </View>
 
-
-             <TouchableOpacity
-            style={styles.button}
-            onPress={handleSubmit}
-            disabled={loading}
-          >
-            {loading ? (
-              <ActivityIndicator size='small' color='#fff' />
-            ) : (
-              <Text style={styles.buttonText}>Create book</Text>
-            )}
-          </TouchableOpacity>
-
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? (
+                <ActivityIndicator size='small' color='#fff' />
+              ) : (
+                <Text style={styles.buttonText}>Create book</Text>
+              )}
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
