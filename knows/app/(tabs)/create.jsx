@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { View, Text, Platform, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { View, Text, Platform, KeyboardAvoidingView, ScrollView, TextInput } from 'react-native'
 import { useRouter } from 'expo-router' 
 import styles from '../../assets/styles/create.styles.js'
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 export default function Create() {
 
@@ -32,6 +33,30 @@ export default function Create() {
         <View style={styles.card}>
           <Text style={styles.title}>Create a new books post</Text>
           <Text style={styles.subtitle}>Share your thoughts and reviews</Text>
+        </View>
+
+        <View style={styles.form}>
+          <View style={styles.inputGroup}>
+              <Text style={styles.label}>Title</Text>
+              <View style={styles.inputContainer}>
+                <Ionicons
+                  name='book-outline'
+                  size={24}
+                  color='black'
+                  style={styles.inputIcon}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder='Enter the book title'
+                  value={title}
+                  onChangeText={setTitle}
+                  keyboardType='default'
+                  autoCapitalize='none'
+                />
+              </View>
+            </View>
+
+
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
