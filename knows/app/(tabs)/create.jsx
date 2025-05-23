@@ -46,6 +46,12 @@ export default function Create () {
         quality: 0.5,
         base64 : true,
       })
+
+      if (!result.canceled) {
+        setImage(result.assets[0].uri)
+        setImageBase64(result.assets[0].base64)
+      }
+      
     } catch (error) {
       Alert.alert('Error', 'Something went wrong while uploading the image.')
     }
