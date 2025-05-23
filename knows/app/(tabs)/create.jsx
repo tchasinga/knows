@@ -1,12 +1,18 @@
 import { useState } from 'react'
-import { View, Text, Platform, KeyboardAvoidingView, ScrollView, TextInput } from 'react-native'
-import { useRouter } from 'expo-router' 
+import {
+  View,
+  Text,
+  Platform,
+  KeyboardAvoidingView,
+  ScrollView,
+  TextInput
+} from 'react-native'
+import { useRouter } from 'expo-router'
 import styles from '../../assets/styles/create.styles.js'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-export default function Create() {
-
-  const [title, setTitle] = useState('') 
+export default function Create () {
+  const [title, setTitle] = useState('')
   const [caption, setCaption] = useState('')
   const [ratinng, setRating] = useState(2)
   const [image, setImage] = useState(null)
@@ -14,29 +20,27 @@ export default function Create() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-
   const handleSubmit = async () => {}
 
   const handleImageUpload = async () => {}
 
   return (
     <KeyboardAvoidingView
-         style={{ flex: 1 }}
-         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-       >
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <ScrollView
         style={styles.scrollViewStyle}
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
+        keyboardShouldPersistTaps='handled'
       >
         <View style={styles.card}>
           <Text style={styles.title}>Create a new books post</Text>
           <Text style={styles.subtitle}>Share your thoughts and reviews</Text>
-        </View>
 
-        <View style={styles.form}>
-          <View style={styles.inputGroup}>
+          <View style={styles.form}>
+            <View style={styles.inputGroup}>
               <Text style={styles.label}>Title</Text>
               <View style={styles.inputContainer}>
                 <Ionicons
@@ -56,7 +60,8 @@ export default function Create() {
               </View>
             </View>
 
-
+            
+          </View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
