@@ -1,4 +1,5 @@
 import { Tabs } from 'expo-router'
+import Ionicons from '@expo/vector-icons/Ionicons.js'
 
 // add tabs layout
 export default function TabsLayout () {
