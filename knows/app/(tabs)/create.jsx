@@ -7,7 +7,8 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native'
 import { useRouter } from 'expo-router'
 import styles from '../../assets/styles/create.styles.js'
@@ -166,6 +167,19 @@ export default function Create () {
                   multiline
                 />
             </View>
+
+
+             <TouchableOpacity
+            style={styles.button}
+            onPress={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator size='small' color='#fff' />
+            ) : (
+              <Text style={styles.buttonText}>Create book</Text>
+            )}
+          </TouchableOpacity>
 
           </View>
         </View>
