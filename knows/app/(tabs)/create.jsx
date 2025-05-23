@@ -43,7 +43,8 @@ export default function Create () {
         mediaTypes: "images",
         allowsEditing: true,
         aspect: [4, 3],
-        quality: 1
+        quality: 0.5,
+        base64 : true,
       })
     } catch (error) {
       Alert.alert('Error', 'Something went wrong while uploading the image.')
