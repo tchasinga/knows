@@ -29,7 +29,6 @@ export default function Create() {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-
       </ScrollView>
     </KeyboardAvoidingView>
   )
