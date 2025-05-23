@@ -32,7 +32,7 @@ export default function Create () {
       // request for image picker permission
       if(Platform.OS === 'web') {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync()
-        console.log("Media Library Status:")
+        console.log("Media Library Status:" , {status})
         if (status !== 'granted') {
           Alert.alert('Sorry, we need media library permissions to make this work!')
           console.log("Media Library Status on view:", {status})
@@ -47,11 +47,17 @@ export default function Create () {
         base64 : true,
       })
 
+      console.log("Image Picker Result:", {result})
+
       if (!result.canceled) {
         setImage(result.assets[0].uri)
-        setImageBase64(result.assets[0].base64)
+        
+        if (result.assets[0].base64) {
+          setImageBase64(result.assets[0].base64)
+        }
+        console.log("Image Base64:", {base64: result.assets[0].base64})
       }
-      
+
     } catch (error) {
       Alert.alert('Error', 'Something went wrong while uploading the image.')
     }
