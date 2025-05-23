@@ -94,7 +94,21 @@ export default function Create () {
               <TouchableOpacity
                 style={styles.imagePicker}
                 onPress={handleImageUpload}
-              ></TouchableOpacity>
+              >
+                {image ? (
+                  <Image source={{ uri: image }} style={styles.previewImage} />
+                ) : (
+                  <View style={styles.placeholderContainer}>
+                    <Ionicons
+                      name='image-outline'
+                      size={24}
+                      color={COLORS.textSecondary}
+                      style={styles.placeholderIcon}
+                    />
+                    <Text style={styles.placeholderText}>Select an image</Text>
+                  </View>
+                )}
+              </TouchableOpacity>
             </View>
 
           </View>
