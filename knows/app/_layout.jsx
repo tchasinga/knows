@@ -10,6 +10,7 @@ export default function RootLayout () {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name='index' options={{ title: 'Home' }} />
           <Stack.Screen name='(auth)' options={{ title: 'Authentication' }} />
+          <Stack.Screen name='(tabs)' options={{ title: 'Tabs' }} />
         </Stack>
       </SafeScreen>
       <StatusBar style='auto' />
