@@ -5,16 +5,18 @@ import {
   Platform,
   KeyboardAvoidingView,
   ScrollView,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from 'react-native'
 import { useRouter } from 'expo-router'
 import styles from '../../assets/styles/create.styles.js'
 import Ionicons from '@expo/vector-icons/Ionicons'
+import COLORS from '../../constant/colors'
 
 export default function Create () {
   const [title, setTitle] = useState('')
   const [caption, setCaption] = useState('')
-  const [ratinng, setRating] = useState(2)
+  const [rating, setRating] = useState(2)
   const [image, setImage] = useState(null)
   const [imageBase64, setImageBase64] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -23,6 +25,26 @@ export default function Create () {
   const handleSubmit = async () => {}
 
   const handleImageUpload = async () => {}
+
+  const renderRatingPicker = async () => {
+    const stars = []
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <TouchableOpacity
+        key={i}
+        onPress={() => setRating(i)}
+        style={styles.starButton}
+        >
+          <Ionicons
+            name={i <= rating ? 'star' : 'star-outline'}
+            size={24}
+            color={i <= rating ? "#f4b400" : COLORS.textSecondary}
+          />
+        </TouchableOpacity>
+      )
+    }
+    return <View style={styles.ratingContainer}>{stars}</View>
+  }
 
   return (
     <KeyboardAvoidingView
@@ -60,6 +82,10 @@ export default function Create () {
               </View>
             </View>
 
+           <View style={styles.inputGroup}>
+             <Text style={styles.label}>Pick rating</Text>
+             {renderRatingPicker()}
+           </View>
 
           </View>
         </View>
