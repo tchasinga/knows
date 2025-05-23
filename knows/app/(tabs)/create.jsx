@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Platform, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { useRouter } from 'expo-router' 
 
 export default function Create() {
 
@@ -9,10 +10,19 @@ export default function Create() {
   const [image, setImage] = useState(null)
   const [imageBase64, setImageBase64] = useState(null)
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
+
+
+  const handleSubmit = async () => {}
+
+  const handleImageUpload = async () => {}
 
   return (
-    <View>
+    <KeyboardAvoidingView
+         style={{ flex: 1 }}
+         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+       >
       <Text>create is online</Text>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
