@@ -28,7 +28,6 @@ export default function Login () {
       console.log('Login successful:', user)
       console.log('Token:', token)
     } else {
-      console.error('Login failed:', user)
     }
   }
 
