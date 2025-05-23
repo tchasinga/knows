@@ -13,9 +13,9 @@ export default function RootLayout () {
   const {checkAuth ,user, token } = useAuthStore()
 
   // Check if user is logged in
-  useEffect(() =>{
+  useEffect(() => {
     checkAuth()
-  })
+  }, [checkAuth])
 
   // Redirect to login if not logged in
   useEffect(() => {
