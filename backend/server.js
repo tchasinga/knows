@@ -6,7 +6,7 @@ import BookNews from './routes/book.routes.js'
 import cors from 'cors'
 import job from './db/cron.js'
 
-// innitialize express app
+// initialize express app
 const app = express()
 
 dotenv.config()
@@ -15,8 +15,10 @@ const PORT = process.env.PORT || 8000
 // middleware
 job.start()
 app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+
+// Increase payload size limit (default is ~100kb)
+app.use(express.json({ limit: '50mb' })) // Adjust the limit as needed
+app.use(express.urlencoded({ limit: '50mb', extended: true }))
 
 // connect to MongoDB
 app.listen(PORT, () => {

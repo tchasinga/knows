@@ -1,6 +1,6 @@
-import   jwt  from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import User from '../models/user.models.js'
+import User from '../models/user.models.js';
 
 dotenv.config();
 
@@ -22,16 +22,19 @@ export const protect = async (req, res, next) => {
 
       // Find the user associated with the token
       req.user = await User.findById(decoded._id).select('-password');
+      
+      // Check if user exists
+      if (!req.user) {
+        return res.status(401).json({ message: 'User not found' });
+      }
 
-      next();
+      return next();
     } catch (error) {
-      console.error(error);
-      res.status(401).json({ message: 'Not authorized, token failed' });
+      console.error('JWT Error:', error);
+      return res.status(401).json({ message: 'Not authorized, token failed' });
     }
   }
 
-  // If no token is provided, return an unauthorized response
-  if (!token) {
-    res.status(401).json({ message: 'Not authorized, no token' });
-  }
+  // If no token is provided
+  return res.status(401).json({ message: 'Not authorized, no token' });
 };
