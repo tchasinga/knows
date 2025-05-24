@@ -2,7 +2,7 @@ import { View, Text, Alert, FlatList } from 'react-native'
 import { useEffect, useState } from 'react'
 import useAuthStore from '../../store/authStore.js'
 import styles from '../../assets/styles/home.styles.js'
-import Image from "expo-image"
+import Image from 'expo-image'
 
 export default function Index () {
   const { token } = useAuthStore()
@@ -20,18 +20,18 @@ export default function Index () {
 
   const renderItem = ({ item }) => (
     <View style={styles.bookCard}>
-      
+
       <View style={styles.bookHeader}>
         <View style={styles.userInfo}>
           <Image
             source={{ uri: item.user.profilepic }}
             style={styles.avatar}
-            contentFit="cover"
+            contentFit='cover'
           />
           <Text style={styles.username}>{item.user.name}</Text>
         </View>
       </View>
-
+      
     </View>
   )
 
