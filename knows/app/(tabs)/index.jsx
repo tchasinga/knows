@@ -6,7 +6,7 @@ import useAuthStore from '../../store/authStore.js'
 import styles from '../../assets/styles/home.styles.js'
 import { Image } from 'expo-image'
 
-export default function Index() {
+export default function Index () {
   const { token } = useAuthStore()
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(false)
@@ -42,7 +42,7 @@ export default function Index() {
       if (refreshing) {
         setBooks(data.books)
       } else {
-        setBooks((prevBooks) => [...prevBooks, ...data.books])
+        setBooks(prevBooks => [...prevBooks, ...data.books])
       }
 
       setHasMore(pageNumber < data.totalPages)
@@ -99,7 +99,7 @@ export default function Index() {
       <FlatList
         data={books}
         renderItem={renderItem}
-        keyExtractor={(item) => item._id}
+        keyExtractor={item => item._id}
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
         onEndReached={handleLoadMore}
