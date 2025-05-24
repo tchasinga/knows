@@ -22,7 +22,7 @@ export default function Index () {
         setLoading(true)
       }
       const response = await fetch(
-        `http://localhost:8000/api/v2/book?page=${pageNumber}&limit=5`,
+        `http://localhost:8000/api/v2/book/all?page=${pageNumber}&limit=5`,
         {
           method: 'GET',
           headers: {
@@ -31,6 +31,11 @@ export default function Index () {
           }
         }
       )
+      if (!response.ok) {
+        throw new Error('Failed to fetch books')
+      }
+      const data = await response.json()
+
     } catch (error) {
       console.error('Error fetching books:', error)
       Alert.alert('Error', 'Failed to fetch books. Please try again later.')
