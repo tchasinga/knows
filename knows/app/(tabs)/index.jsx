@@ -1,5 +1,7 @@
-/* eslint-disable no-empty-pattern */
-/* eslint-disable no-unused-expressions */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+ 
+ 
 import { View, Text, FlatList } from 'react-native'
 import { useEffect, useState } from 'react'
 import useAuthStore from '../../store/authStore.js'
