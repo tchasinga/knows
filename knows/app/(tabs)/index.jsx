@@ -31,7 +31,10 @@ export default function Index () {
           }
         }
       )
-    } catch (error) {}
+    } catch (error) {
+      console.error('Error fetching books:', error)
+      Alert.alert('Error', 'Failed to fetch books. Please try again later.')
+    }
   }
 
   const handleLoadMore = async () => {}
