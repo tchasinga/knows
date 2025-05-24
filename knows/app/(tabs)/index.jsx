@@ -22,7 +22,7 @@ export default function Index () {
         setLoading(true)
       }
       const response = await fetch(
-        `http://localhost:8000/api/v2/book?page=${pageNumber}`,
+        `http://localhost:8000/api/v2/book?page=${pageNumber}&limit=5`,
         {
           method: 'GET',
           headers: {
