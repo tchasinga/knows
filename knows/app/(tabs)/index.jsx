@@ -18,12 +18,6 @@ export default function Index () {
     fetchBooks()
   }, [])
 
-  useEffect(() => {
-    if (!token) {
-      Alert.alert('Error', 'You need to be logged in to post a book')
-      return
-    }
-  }, [token])
 
   return (
     <View>
