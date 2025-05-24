@@ -44,13 +44,18 @@ export default function Index () {
       if (refreshing) {
         setBooks(data.books)
       } else {
-        setBooks(prevBooks => [...prevBooks, ...data.books])
+        setBooks(prevBooks => {
+          const newBooks = data.books.filter(
+            newBook => !prevBooks.some(book => book._id === newBook._id)
+          )
+          return [...prevBooks, ...newBooks]
+        })
       }
 
       setHasMore(pageNumber < data.totalPages)
       setPage(pageNumber)
-    } catch ([]) {
-      null
+    } catch (error) {
+      // Handle error
     } finally {
       setLoading(false)
       setRefreshing(false)
@@ -71,9 +76,9 @@ export default function Index () {
   }
 
   const renderRating = (rating) => {
-    const start = []
-    for(let i = 0; i < rating; i++) {
-      start.push(
+    const stars = []
+    for (let i = 0; i < 5; i++) {
+      stars.push(
         <Ionicons
           key={i}
           name={i < rating ? 'star' : 'star-outline'}
@@ -83,7 +88,7 @@ export default function Index () {
         />
       )
     }
-    return start
+    return stars
   }
 
   useEffect(() => {
@@ -95,11 +100,11 @@ export default function Index () {
       <View style={styles.bookHeader}>
         <View style={styles.userInfo}>
           <Image
-            source={{ uri: item.user.profilepic }}
+            source={{ uri: item.user?.profilepic }}
             style={styles.avatar}
             contentFit='cover'
           />
-          <Text style={styles.username}>{item.user.name}</Text>
+          <Text style={styles.username}>{item.user?.name}</Text>
         </View>
       </View>
       <View style={styles.bookImageContainer}>
@@ -115,7 +120,11 @@ export default function Index () {
         <View style={styles.ratingContainer}>
           {renderRating(item.rating)}
         </View>
-        </View>
+        <Text style={styles.caption}>{item.caption}</Text>
+        <Text style={styles.date}>
+          {new Date(item.createdAt).toLocaleDateString()}
+        </Text>
+      </View>
     </View>
   )
 
@@ -124,7 +133,7 @@ export default function Index () {
       <FlatList
         data={books}
         renderItem={renderItem}
-        keyExtractor={item => item._id}
+        keyExtractor={(item, index) => item._id || index.toString()}
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
         onEndReached={handleLoadMore}
