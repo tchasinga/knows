@@ -11,6 +11,8 @@ export default function Index () {
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
 
+  // http://localhost:8000/api/v2/book
+
   const fetchBooks = async () => {}
 
   useEffect(() =>{
