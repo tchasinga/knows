@@ -21,6 +21,16 @@ export default function Index () {
       } else if (pageNumber === 1) {
         setLoading(true)
       }
+      const response = await fetch(
+        `http://localhost:8000/api/v2/book?page=${pageNumber}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
     } catch (error) {}
   }
 
