@@ -14,13 +14,20 @@ export default function Index () {
 
   // http://localhost:8000/api/v2/book
 
-  const fetchBooks = async (pageNumber = 1, refreshing = false) => {}
+  const fetchBooks = async (pageNumber = 1, refreshing = false) => {
+    try {
+      if (refreshing) {
+        setRefreshing(true)
+      } else if (pageNumber === 1) {
+        setLoading(true)
+      }
+    } catch (error) {}
+  }
 
   const handleLoadMore = async () => {}
 
   const renderItem = ({ item }) => (
     <View style={styles.bookCard}>
-
       <View style={styles.bookHeader}>
         <View style={styles.userInfo}>
           <Image
@@ -31,7 +38,14 @@ export default function Index () {
           <Text style={styles.username}>{item.user.name}</Text>
         </View>
       </View>
-      
+
+      <View style={styles.bookImageContainer}>
+        <Image
+          source={{ uri: item.image }}
+          style={styles.bookImage}
+          contentFit='cover'
+        />
+      </View>
     </View>
   )
 
