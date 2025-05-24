@@ -1,6 +1,7 @@
 import { View, Text, Alert } from 'react-native'
 import { useEffect, useState } from 'react'
 import useAuthStore from '../../store/authStore.js'
+import styles from '../../assets/styles/home.styles.js'
 
 export default function Index () {
   const { token } = useAuthStore()
@@ -13,6 +14,8 @@ export default function Index () {
   // http://localhost:8000/api/v2/book
 
   const fetchBooks = async (pageNumber = 1, refreshing = false) => {}
+
+  const handleLoadMore = async () => {}
 
   useEffect(() => {
     fetchBooks()
