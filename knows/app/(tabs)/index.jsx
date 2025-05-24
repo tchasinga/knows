@@ -47,7 +47,6 @@ export default function Index() {
       setPage(pageNumber)
     } catch (error) {
       console.error('Error fetching books:', error)
-      Alert.alert('Error', 'Failed to fetch books. Please try again later.')
     } finally {
       setLoading(false)
       setRefreshing(false)
