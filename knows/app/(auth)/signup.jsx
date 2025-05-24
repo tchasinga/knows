@@ -20,13 +20,13 @@ export default function Signup () {
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const { user, token, isLoading, register } = useAuthStore()
+  const { isLoading, register } = useAuthStore()
 
   const router = useRouter()
 
   // check if fields are empty
   if (!name || !email || !password || !gender) {
-    Alert.alert('Missing Fields', 'Please fill in all fields.')
+    Alert.alert('Please', 'Do not forget to fill in all fields.')
   }
 
   const handleSignup = async () => {
