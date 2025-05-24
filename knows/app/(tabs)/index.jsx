@@ -2,7 +2,10 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import useAuthStore from '../../store/authStore.js'
 
-export default function index () {
+export default function Index () {
+
+  const { token } = useAuthStore()
+
   return (
     <View>
       <Text>index welcome page</Text>
