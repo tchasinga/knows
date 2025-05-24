@@ -1,4 +1,6 @@
-import { View, Text, Alert, FlatList } from 'react-native'
+/* eslint-disable no-empty-pattern */
+/* eslint-disable no-unused-expressions */
+import { View, Text, FlatList } from 'react-native'
 import { useEffect, useState } from 'react'
 import useAuthStore from '../../store/authStore.js'
 import styles from '../../assets/styles/home.styles.js'
@@ -45,8 +47,8 @@ export default function Index() {
 
       setHasMore(pageNumber < data.totalPages)
       setPage(pageNumber)
-    } catch (error) {
-      console.error('Error fetching books:', error)
+    } catch ([]) {
+      null
     } finally {
       setLoading(false)
       setRefreshing(false)
