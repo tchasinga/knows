@@ -1,3 +1,3 @@
 
 
-I stoped at 3:20:03s
+I stoped at 4:27:03s
