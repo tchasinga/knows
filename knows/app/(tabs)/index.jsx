@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import useAuthStore from '../../store/authStore.js'
 import styles from '../../assets/styles/home.styles.js'
 import { Image } from 'expo-image'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import COLORS from '../../constant/colors.js'
 
 export default function Index () {
   const { token } = useAuthStore()
@@ -68,6 +70,22 @@ export default function Index () {
     await fetchBooks(1, true)
   }
 
+  const renderRating = (rating) => {
+    const start = []
+    for(let i = 0; i < rating; i++) {
+      start.push(
+        <Ionicons
+          key={i}
+          name={i < rating ? 'star' : 'star-outline'}
+          size={16}
+          color={i < rating ? '#f4b400' : COLORS.textSecondary}
+          style={{ marginRight: 2 }}
+        />
+      )
+    }
+    return start
+  }
+
   useEffect(() => {
     fetchBooks()
   }, [])
@@ -91,6 +109,13 @@ export default function Index () {
           contentFit='cover'
         />
       </View>
+
+      <View style={styles.bookDetails}>
+        <Text style={styles.bookTitle}>{item.title}</Text>
+        <View style={styles.ratingContainer}>
+          {renderRating(item.rating)}
+        </View>
+        </View>
     </View>
   )
 
