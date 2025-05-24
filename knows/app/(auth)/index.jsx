@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Platform,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView
 } from 'react-native'
 import styles from '../../assets/styles/login.styles.js'
 import { useState } from 'react'
