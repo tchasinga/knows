@@ -44,34 +44,36 @@ export const createBook = async (req, res) => {
 // get all books
 export const getAllBooks = async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 5
+    const skip = (page - 1) * limit
+
     const books = await Book.find()
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
       .populate('user', 'name profilepic')
-    if (!books) {
-      return res.status(404).json({ message: 'No books found' })
-    }
-
-    const page = page.query.page || 1
-    const limit = page.query.limit || 5
-    const skip = (page - 1) * limit
 
     const totalBooks = await Book.countDocuments()
     const totalPages = Math.ceil(totalBooks / limit)
+
+    if (!books || books.length === 0) {
+      return res.status(404).json({ message: 'No books found' })
+    }
 
     res.status(200).json({
       message: 'Books fetched successfully',
       books,
       currentPage: page,
-      limit: limit,
-      totalBooks: totalBooks,
-      totalPages: totalPages
+      limit,
+      totalBooks,
+      totalPages
     })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 }
+
 
 // get a book by id
 export const getBookById = async (req, res) => {
