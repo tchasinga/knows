@@ -37,6 +37,7 @@ export default function Index () {
       const data = await response.json()
       setBooks((prevBooks) => [...prevBooks, ...data.books])
       setHasMore(pageNumber < data.totalPages)
+      setPage(pageNumber)
 
     } catch (error) {
       console.error('Error fetching books:', error)
