@@ -1,5 +1,10 @@
 import express from 'express'
-import {createBook, getAllBooks, getBookById, deleteBook } from '../controllers/book.controllers.js'
+import {
+  createBook,
+  getAllBooks,
+  getBookById,
+  deleteBook
+} from '../controllers/book.controllers.js'
 import protect from '../middleware/protectrouter.js'
 
 const router = express.Router()
