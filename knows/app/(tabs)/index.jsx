@@ -1,4 +1,4 @@
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, FlatList } from 'react-native'
 import { useEffect, useState } from 'react'
 import useAuthStore from '../../store/authStore.js'
 import styles from '../../assets/styles/home.styles.js'
@@ -21,10 +21,13 @@ export default function Index () {
     fetchBooks()
   }, [])
 
-
   return (
-    <View>
-      <Text>index welcome page</Text>
+    <View style={styles.container}>
+      <FlatList
+        data={books}
+        renderItem={renderItem}
+        keyExtractor={item => item._id}
+      />
     </View>
   )
 }
