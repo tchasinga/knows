@@ -17,6 +17,8 @@ export default function Index () {
 
   const handleLoadMore = async () => {}
 
+  const renderItem = ({ item }) => {}
+
   useEffect(() => {
     fetchBooks()
   }, [])
@@ -27,6 +29,8 @@ export default function Index () {
         data={books}
         renderItem={renderItem}
         keyExtractor={item => item._id}
+        contentContainerStyle={styles.listContainer}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   )
