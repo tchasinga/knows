@@ -23,6 +23,12 @@
         "ACCESS_WIFI_STATE",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE",
+        "CAMERA",
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "ACCESS_WIFI_STATE",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
         "CAMERA"
       ]
     },
@@ -47,7 +53,10 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "f0d601b3-c88a-4347-80c8-5adf370f31af"
+      }
     },
     "runtimeVersion": {
       "policy": "appVersion"
@@ -55,7 +64,8 @@
     "updates": {
       "fallbackToCacheTimeout": 0,
       "enabled": true,
-      "checkOnLaunch": "ALWAYS"
+      "checkOnLaunch": "ALWAYS",
+      "url": "https://u.expo.dev/f0d601b3-c88a-4347-80c8-5adf370f31af"
     }
   }
 }
