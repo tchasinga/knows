@@ -73,7 +73,7 @@ export const signup = async (req, res) => {
 
     // Generate a JWT token
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h'
+     expiresIn: '3d'
     })
 
     // Add token to user object before saving
