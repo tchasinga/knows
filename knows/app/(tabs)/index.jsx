@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
- 
- 
-import { View, Text, FlatList } from 'react-native'
+
+import { View, Text, FlatList, ActivityIndicator } from 'react-native'
 import { useEffect, useState } from 'react'
 import useAuthStore from '../../store/authStore.js'
 import styles from '../../assets/styles/home.styles.js'
@@ -27,7 +26,7 @@ export default function Index () {
       }
 
       const response = await fetch(
-        `http://localhost:8000/api/v2/book/all?page=${pageNumber}&limit=5`,
+        `http://localhost:8000/api/v2/book/all?page=${pageNumber}&limit=3`,
         {
           method: 'GET',
           headers: {
@@ -77,7 +76,7 @@ export default function Index () {
     await fetchBooks(1, true)
   }
 
-  const renderRating = (rating) => {
+  const renderRating = rating => {
     const stars = []
     for (let i = 0; i < 5; i++) {
       stars.push(
@@ -119,12 +118,10 @@ export default function Index () {
 
       <View style={styles.bookDetails}>
         <Text style={styles.bookTitle}>{item.title}</Text>
-        <View style={styles.ratingContainer}>
-          {renderRating(item.rating)}
-        </View>
+        <View style={styles.ratingContainer}>{renderRating(item.rating)}</View>
         <Text style={styles.caption}>{item.caption}</Text>
         <Text style={styles.date}>
-          {new Date(item.createdAt).toLocaleDateString()}
+          Shared on {new Date(item.createdAt).toLocaleDateString()}
         </Text>
       </View>
     </View>
@@ -142,7 +139,36 @@ export default function Index () {
         onEndReachedThreshold={0.5}
         refreshing={refreshing}
         onRefresh={handleRefresh}
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>Welcome to Knows 📖</Text>
+            <Text style={styles.headerSubtitle}>
+              Discover new books and share your thoughts
+            </Text>
+          </View>
+        }
+        ListFooterComponent={
+          hasMore && books.length > 0 ? (
+            <ActivityIndicator
+              style={styles.footerLoader}
+              size='small'
+              color={COLORS.primary}
+            />
+          ) : null
+        }
       />
+
+      {loading && (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <ActivityIndicator size='small' color={COLORS.primary} />
+        </View>
+      )}
     </View>
   )
 }

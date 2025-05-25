@@ -35,7 +35,9 @@ export const createBook = async (req, res) => {
     })
 
     await newBook.save()
-    res.status(201).json({ message: 'Book created successfully', book: newBook })
+    res
+      .status(201)
+      .json({ message: 'Book created successfully', book: newBook })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -45,7 +47,7 @@ export const createBook = async (req, res) => {
 export const getAllBooks = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1
-    const limit = parseInt(req.query.limit) || 5
+    const limit = parseInt(req.query.limit) || 3
     const skip = (page - 1) * limit
 
     const books = await Book.find()
@@ -73,7 +75,6 @@ export const getAllBooks = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
-
 
 // get a book by id
 export const getBookById = async (req, res) => {
@@ -104,13 +105,13 @@ export const deleteBook = async (req, res) => {
     }
 
     // Delete the image from cloudinary
-    if (book.image && book.image.includes("cloudinary")) {
-        try {
-            const publicId = book.image.split('/').pop().split('.')[0]
-            await cloudinary.uploader.destroy(`books/${publicId}`)
-        } catch (error) {
-            console.error("Error deleting image from Cloudinary:", error)
-        }
+    if (book.image && book.image.includes('cloudinary')) {
+      try {
+        const publicId = book.image.split('/').pop().split('.')[0]
+        await cloudinary.uploader.destroy(`books/${publicId}`)
+      } catch (error) {
+        console.error('Error deleting image from Cloudinary:', error)
+      }
     }
 
     // Delete the book from the database
@@ -118,5 +119,26 @@ export const deleteBook = async (req, res) => {
     res.status(200).json({ message: 'Book deleted successfully' })
   } catch (error) {
     res.status(500).json({ message: error.message })
+  }
+}
+
+export const getBookforUser = async (req, res) => {
+  try {
+    if (!req.user?._id) {
+      return res.status(401).json({ message: 'Unauthorized' })
+    }
+    
+    const books = await Book.find({ user: req.user._id }).sort({
+      createdAt: -1
+    })
+
+    res.status(200).json({ success: true, books })
+  } catch (error) {
+    console.error('Error fetching user books:', error)
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to fetch user books',
+      error: error.message 
+    })
   }
 }
