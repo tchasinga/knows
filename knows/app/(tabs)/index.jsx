@@ -141,7 +141,7 @@ export default function Index () {
         onRefresh={handleRefresh}
         ListHeaderComponent={
           <View style={styles.header}>
-            <Text style={styles.headerTitle}>Welcome here & Know 📖</Text>
+            <Text style={styles.headerTitle}>Knowledge 📖</Text>
             <Text style={styles.headerSubtitle}>
               Discover new books and share your thoughts
             </Text>
