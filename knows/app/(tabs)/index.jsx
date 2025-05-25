@@ -147,7 +147,28 @@ export default function Index () {
             <Text style={styles.headerSubtitle}>Discover new books and share your thoughts</Text>
           </View>
         }
+
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <Ionicons
+              name='book-outline'
+              size={48}
+              color={COLORS.textSecondary}
+              style={styles.emptyIcon}
+            />
+            <Text style={styles.emptyText}>No books found</Text>
+            <Text style={styles.emptySubtext}>Try refreshing or logout & login again</Text>
+          </View>
+        }
+
       />
+
+      {loading && (
+        <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
+      )}
+
     </View>
   )
 }
