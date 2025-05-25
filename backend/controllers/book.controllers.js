@@ -35,7 +35,9 @@ export const createBook = async (req, res) => {
     })
 
     await newBook.save()
-    res.status(201).json({ message: 'Book created successfully', book: newBook })
+    res
+      .status(201)
+      .json({ message: 'Book created successfully', book: newBook })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
@@ -74,7 +76,6 @@ export const getAllBooks = async (req, res) => {
   }
 }
 
-
 // get a book by id
 export const getBookById = async (req, res) => {
   try {
@@ -104,13 +105,13 @@ export const deleteBook = async (req, res) => {
     }
 
     // Delete the image from cloudinary
-    if (book.image && book.image.includes("cloudinary")) {
-        try {
-            const publicId = book.image.split('/').pop().split('.')[0]
-            await cloudinary.uploader.destroy(`books/${publicId}`)
-        } catch (error) {
-            console.error("Error deleting image from Cloudinary:", error)
-        }
+    if (book.image && book.image.includes('cloudinary')) {
+      try {
+        const publicId = book.image.split('/').pop().split('.')[0]
+        await cloudinary.uploader.destroy(`books/${publicId}`)
+      } catch (error) {
+        console.error('Error deleting image from Cloudinary:', error)
+      }
     }
 
     // Delete the book from the database
@@ -121,15 +122,14 @@ export const deleteBook = async (req, res) => {
   }
 }
 
-
 // get a book by user who created it
-export const getBookforUser = async (req, res) =>{
+export const getBookforUser = async (req, res) => {
   try {
-    const book = await Book.find({ user: req.user._id }).sort({ createdAt: -1 })
-    if (!book || book.length === 0) {
-      return res.status(404).json({ message: 'No books found for this user' })
-    }
-    res.status(200).json({ message: 'Books fetched successfully', book })
+    const books = await Book.find({ user: req.user._id }).sort({
+      createdAt: -1
+    })
+
+    res.json(books)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

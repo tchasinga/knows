@@ -15,6 +15,6 @@ router.post('/', protect, createBook)
 router.get('/all', protect, getAllBooks)
 router.get('/:id', protect, getBookById)
 router.delete('/delete/:id', protect, deleteBook)
-router.get('/user', protect, getBookforUser)
+router.get('/userdata', getBookforUser)
 
 export default router
