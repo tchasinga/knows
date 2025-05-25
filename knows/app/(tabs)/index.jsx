@@ -140,6 +140,13 @@ export default function Index () {
         onEndReachedThreshold={0.5}
         refreshing={refreshing}
         onRefresh={handleRefresh}
+
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>Welcome to Knows 📖</Text>
+            <Text style={styles.headerSubtitle}>Discover new books and share your thoughts</Text>
+          </View>
+        }
       />
     </View>
   )
