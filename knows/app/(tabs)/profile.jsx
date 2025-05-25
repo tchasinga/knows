@@ -3,6 +3,9 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import useAuthStore from '../../store/authStore.js'
 import styles from '../../assets/styles/profile.styles.js'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { Image } from 'expo-image'
+
 
 export default function Profile () {
   const {user ,logout, token } = useAuthStore()
