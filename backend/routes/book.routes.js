@@ -3,7 +3,8 @@ import {
   createBook,
   getAllBooks,
   getBookById,
-  deleteBook
+  deleteBook,
+  getBookforUser
 } from '../controllers/book.controllers.js'
 import protect from '../middleware/protectrouter.js'
 
@@ -13,6 +14,7 @@ const router = express.Router()
 router.post('/', protect, createBook)
 router.get('/all', protect, getAllBooks)
 router.get('/:id', protect, getBookById)
-router.delete('/:id', protect, deleteBook)
+router.delete('/delete/:id', protect, deleteBook)
+router.get('/user', protect, getBookforUser)
 
 export default router
