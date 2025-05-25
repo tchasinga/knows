@@ -120,3 +120,17 @@ export const deleteBook = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+
+// get a book by user who created it
+export const getBookforUser = async (req, res) =>{
+  try {
+    const book = await Book.find({ user: req.user._id }).sort({ createdAt: -1 })
+    if (!book || book.length === 0) {
+      return res.status(404).json({ message: 'No books found for this user' })
+    }
+    res.status(200).json({ message: 'Books fetched successfully', book })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
