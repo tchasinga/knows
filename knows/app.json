@@ -24,7 +24,8 @@
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE",
         "CAMERA"
-      ]
+      ],
+      "package": "com.tchasinga.knows"
     },
     "web": {
       "bundler": "metro",
@@ -45,6 +46,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "17b56fa9-9fd4-41f1-9633-625153c3973e"
+      }
     }
   }
 }
