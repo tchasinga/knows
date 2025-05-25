@@ -34,7 +34,7 @@ export default function Profile () {
 
     try {
       const response = await fetch(
-        'http://localhost:8000/api/v2/book/users/data',
+        'https://knows.onrender.com/api/v2/book/users/data',
         {
           method: 'GET',
           headers: {
@@ -63,7 +63,7 @@ export default function Profile () {
   const handleDeleteBook = async bookId => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/v2/book/delete/${bookId}`,
+        `https://knows.onrender.com/api/v2/book/delete/${bookId}`,
         {
           method: 'DELETE',
           headers: {

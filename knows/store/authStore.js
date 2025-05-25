@@ -9,7 +9,7 @@ const useAuthStore = create(set => ({
   register: async (name, email, password, gender) => {
     set({ isLoading: true })
     try {
-      const response = await fetch('http://localhost:8000/api/v1/user/signup', {
+      const response = await fetch('https://knows.onrender.com/api/v1/user/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ const useAuthStore = create(set => ({
   login: async (email, password) => {
     set({ isLoading: true })
     try {
-      const response = await fetch('http://localhost:8000/api/v1/user/signin', {
+      const response = await fetch('https://knows.onrender.com/api/v1/user/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

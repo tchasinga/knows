@@ -26,7 +26,7 @@ export default function Index () {
       }
 
       const response = await fetch(
-        `http://localhost:8000/api/v2/book/all?page=${pageNumber}&limit=3`,
+        `https://knows.onrender.com/api/v2/book/all?page=${pageNumber}&limit=3`,
         {
           method: 'GET',
           headers: {

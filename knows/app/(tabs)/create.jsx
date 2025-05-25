@@ -53,7 +53,7 @@ export default function Create () {
 
       const imageDataUrl = `data:${imageType};base64,${imageBase64}`
 
-      const response = await fetch('http://localhost:8000/api/v2/book', {
+      const response = await fetch('https://knows.onrender.com/api/v2/book', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
