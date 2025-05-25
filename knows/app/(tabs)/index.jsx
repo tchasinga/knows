@@ -159,15 +159,14 @@ export default function Index () {
       />
 
       {loading && (
-        <View style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-          <ActivityIndicator
-            size='small'
-            color={COLORS.primary}
-          />
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <ActivityIndicator size='small' color={COLORS.primary} />
         </View>
       )}
     </View>
