@@ -23,6 +23,12 @@
         "ACCESS_WIFI_STATE",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE",
+        "CAMERA",
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "ACCESS_WIFI_STATE",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
         "CAMERA"
       ],
       "package": "com.tchasinga.knows"
@@ -52,6 +58,12 @@
       "eas": {
         "projectId": "17b56fa9-9fd4-41f1-9633-625153c3973e"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/17b56fa9-9fd4-41f1-9633-625153c3973e"
     }
   }
 }
