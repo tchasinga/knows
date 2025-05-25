@@ -122,15 +122,23 @@ export const deleteBook = async (req, res) => {
   }
 }
 
-// get a book by user who created it
 export const getBookforUser = async (req, res) => {
   try {
+    if (!req.user?._id) {
+      return res.status(401).json({ message: 'Unauthorized' })
+    }
+    
     const books = await Book.find({ user: req.user._id }).sort({
       createdAt: -1
     })
 
-    res.json(books)
+    res.status(200).json({ success: true, books })
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    console.error('Error fetching user books:', error)
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to fetch user books',
+      error: error.message 
+    })
   }
 }

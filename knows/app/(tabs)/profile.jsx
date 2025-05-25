@@ -19,30 +19,36 @@ export default function Profile() {
   }
 
   const fetchUserBooks = async () => {
-    if (!token || !user?._id) return
-    
-    try {
-      const response = await fetch('http://192.168.1.4:8000/api/v2/book/userdata', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch books')
-      }
-
-      const data = await response.json()
-      setBooks(data.books || [])
-    } catch (error) {
-      console.error('Error fetching books:', error)
-    } finally {
-      setLoading(false)
-      setRefreshing(false)
-    }
+  if (!token || !user?._id) {
+    setLoading(false)
+    setRefreshing(false)
+    return
   }
+  
+  try {
+    const response = await fetch('http://localhost:8000/api/v2/book/users/data', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    const data = await response.json()
+    
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to fetch books')
+    }
+
+    setBooks(data.books || data || []) // Handle both response formats
+  } catch (error) {
+    console.error('Error fetching books:', error.message)
+    // You might want to show an error message to the user here
+  } finally {
+    setLoading(false)
+    setRefreshing(false)
+  }
+}
 
   const handleDeleteBook = async (bookId) => {
     try {
