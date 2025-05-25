@@ -38,8 +38,8 @@ export default function Signup() {
     }
 
     // Password strength check (optional)
-    if (password.length < 6) {
-      Alert.alert('Weak Password', 'Password should be at least 6 characters long.')
+    if (password.length < 8) {
+      Alert.alert('Weak Password', 'Password should be at least 8 characters long.')
       return
     }
 
