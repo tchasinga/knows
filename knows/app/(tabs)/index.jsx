@@ -123,9 +123,7 @@ export default function Index () {
           {renderRating(item.rating)}
         </View>
         <Text style={styles.caption}>{item.caption}</Text>
-        <Text style={styles.date}>
-          {new Date(item.createdAt).toLocaleDateString()}
-        </Text>
+        <Text style={styles.date}>Shared on {new Date(item.createdAt).toLocaleDateString()}</Text>
       </View>
     </View>
   )
