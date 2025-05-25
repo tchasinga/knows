@@ -151,7 +151,8 @@ export const signin = async (req, res) => {
 
     // Generate a JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h'
+      // Set token expiration after 3 days
+      expiresIn: '3d'
     })
 
     // Omit sensitive information from response
