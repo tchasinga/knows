@@ -22,7 +22,7 @@ export default function Profile() {
     if (!token || !user?._id) return
     
     try {
-      const response = await fetch('http://localhost:8000/api/v2/book/userdata', {
+      const response = await fetch('http://192.168.1.4:8000/api/v2/book/userdata', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
