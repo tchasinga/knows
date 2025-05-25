@@ -142,7 +142,7 @@ export default function Signup() {
                 />
               </TouchableOpacity>
             </View>
-            <Text style={styles.passwordHint}>Use at least 6 characters</Text>
+            <Text style={styles.passwordHint}>Use at least 8 characters</Text>
           </View>
 
           <View style={styles.inputGroup}>
@@ -156,7 +156,7 @@ export default function Signup() {
               />
               <TextInput
                 style={styles.input}
-                placeholder='Male/Female/Other'
+                placeholder='male/female/other'
                 value={gender}
                 onChangeText={setGender}
                 keyboardType='default'
