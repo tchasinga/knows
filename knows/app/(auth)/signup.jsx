@@ -49,7 +49,7 @@ export default function Signup() {
         Alert.alert(
           'Registration Successful',
           'You have successfully registered.',
-          [{ text: 'OK', onPress: () => router.push('/home') }]
+          [{ text: 'OK',  }]
         )
       } else {
         Alert.alert('Registration Failed', result.message || 'An error occurred during registration.')
