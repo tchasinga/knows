@@ -14,7 +14,7 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import { useRouter } from 'expo-router'
 import useAuthStore from '../../store/authStore'
 
-export default function Signup () {
+export default function Signup() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,27 +24,39 @@ export default function Signup () {
 
   const router = useRouter()
 
-  // check if fields are empty
-  if (!name || !email || !password || !gender) {
-    Alert.alert('Please', 'Do not forget to fill in all fields.')
-  }
-
   const handleSignup = async () => {
-    const result = await register(name, email, password, gender)
-    if (result.success) {
-      console.log('Registration successful:', result)
-      Alert.alert(
-        'Registration Successful',
-        'You have successfully registered.',
-        [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
-      )
-      // Navigate to the home screen or show a success message
-    } else {
-      console.error('Registration failed:', result.message)
-      Alert.alert('Registration Failed', result.message, [
-        { text: 'OK', onPress: () => console.log('OK Pressed') }
-      ])
-      // Show an error message to the user
+    // Validate fields before submission
+    if (!name.trim() || !email.trim() || !password.trim() || !gender.trim()) {
+      Alert.alert('Please fill all fields', 'All fields are required to create an account.')
+      return
+    }
+
+    // Basic email validation
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      Alert.alert('Invalid Email', 'Please enter a valid email address.')
+      return
+    }
+
+    // Password strength check (optional)
+    if (password.length < 6) {
+      Alert.alert('Weak Password', 'Password should be at least 6 characters long.')
+      return
+    }
+
+    try {
+      const result = await register(name, email, password, gender)
+      if (result.success) {
+        Alert.alert(
+          'Registration Successful',
+          'You have successfully registered.',
+          [{ text: 'OK', onPress: () => router.push('/home') }]
+        )
+      } else {
+        Alert.alert('Registration Failed', result.message || 'An error occurred during registration.')
+      }
+    } catch (error) {
+      console.error('Registration error:', error)
+      Alert.alert('Error', 'Something went wrong. Please try again.')
     }
   }
 
@@ -52,6 +64,7 @@ export default function Signup () {
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}
     >
       <View style={styles.container}>
         <View style={styles.card}>
@@ -60,25 +73,24 @@ export default function Signup () {
             <Text style={styles.subtitle}>Sign up to get started</Text>
           </View>
 
-          <View>
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>user name</Text>
-              <View style={styles.inputContainer}>
-                <Ionicons
-                  name='person-outline'
-                  size={24}
-                  color='black'
-                  style={styles.inputIcon}
-                />
-                <TextInput
-                  style={styles.input}
-                  placeholder='Enter your user name'
-                  value={name}
-                  onChangeText={setName}
-                  keyboardType='default'
-                  autoCapitalize='none'
-                />
-              </View>
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Username</Text>
+            <View style={styles.inputContainer}>
+              <Ionicons
+                name='person-outline'
+                size={24}
+                color='black'
+                style={styles.inputIcon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder='Enter your username'
+                value={name}
+                onChangeText={setName}
+                keyboardType='default'
+                autoCapitalize='words'
+                autoCorrect={false}
+              />
             </View>
           </View>
 
@@ -93,11 +105,13 @@ export default function Signup () {
               />
               <TextInput
                 style={styles.input}
-                placeholder='tchasinga@example.com'
+                placeholder='example@email.com'
                 value={email}
                 onChangeText={setEmail}
                 keyboardType='email-address'
                 autoCapitalize='none'
+                autoComplete='email'
+                autoCorrect={false}
               />
             </View>
           </View>
@@ -117,17 +131,20 @@ export default function Signup () {
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
+                autoCapitalize='none'
+                autoCorrect={false}
               />
-              <Ionicons
-                name={showPassword ? 'eye-outline' : 'eye-off-outline'}
-                size={24}
-                color='black'
-                onPress={() => setShowPassword(!showPassword)}
-              />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                <Ionicons
+                  name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                  size={24}
+                  color='black'
+                />
+              </TouchableOpacity>
             </View>
+            <Text style={styles.passwordHint}>Use at least 6 characters</Text>
           </View>
 
-          {/* adding a gender */}
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Gender</Text>
             <View style={styles.inputContainer}>
@@ -139,7 +156,7 @@ export default function Signup () {
               />
               <TextInput
                 style={styles.input}
-                placeholder='Enter your gender'
+                placeholder='Male/Female/Other'
                 value={gender}
                 onChangeText={setGender}
                 keyboardType='default'
@@ -149,9 +166,10 @@ export default function Signup () {
           </View>
 
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, isLoading && styles.disabledButton]}
             onPress={handleSignup}
             disabled={isLoading}
+            activeOpacity={0.8}
           >
             {isLoading ? (
               <ActivityIndicator size='small' color='#fff' />
@@ -162,7 +180,7 @@ export default function Signup () {
 
           <View style={styles.footer}>
             <Text style={styles.footerText}>Already have an account? </Text>
-            <TouchableOpacity onPress={() => router.back('/index')}>
+            <TouchableOpacity onPress={() => router.back()}>
               <Text style={styles.link}>Log In</Text>
             </TouchableOpacity>
           </View>
