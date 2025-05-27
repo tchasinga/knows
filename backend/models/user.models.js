@@ -23,7 +23,8 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true
-    }
+    },
+    //  addig 1000 ksh payment fee before creating an account
   },
   {
     timestamps: true
