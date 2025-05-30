@@ -17,5 +17,4 @@ router.get('/users/data', protect, getBookforUser) // Instead of /userdata
 router.get('/:id', protect, getBookById)
 router.delete('/delete/:id', protect, deleteBook)
 
-
 export default router
