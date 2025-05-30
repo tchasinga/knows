@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     padding: 12,
     height: 100,
     color: COLORS.textDark,
+    
   },
   ratingContainer: {
     flexDirection: "row",

@@ -208,6 +208,7 @@ export default function Create () {
               <Text style={styles.label}>Book description</Text>
               <TextInput
                 style={styles.textArea}
+                textAlignVertical='top'
                 placeholder='Enter the book description'
                 value={caption}
                 onChangeText={setCaption}
