@@ -1,1 +1,0 @@
-I stoped at 4:27:03s
